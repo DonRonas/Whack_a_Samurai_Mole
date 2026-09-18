@@ -2,9 +2,27 @@
 <html>
     <head>
         <title>My Website</title>
-        <link rel="stylesheet" type="text/css" href="css/inicialestilo.css">
+        <link rel="stylesheet" href="css/inicial.css">
     </head>
     <body>
 
-</body>
+        <main>
+            <img src="img/img_topeira_samurai.jpeg" alt="imagem de topeira samurai" width="350px" height="250px">
+
+            <form action="principal.html" method="GET">
+                <div class="campo">
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" id="usuario" name="usuario" placeholder="digite seu nome de usuario" required>
+                </div>
+        
+                <div class="campo">
+                    <label for="senha">Senha:</label>
+                    <input type="text" id="senha" name="senha" placeholder="digite sua senha" required>
+                </div>
+                <button type="submit">ENTRAR</button>
+            </form>
+            <p><a href="cadastro.html">Não tem cadastro? Cadastre-se aqui</a></p>
+        </main>
+    </body>
+    
 </html>
