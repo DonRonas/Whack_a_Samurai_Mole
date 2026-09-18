@@ -1,0 +1,121 @@
+/* Reset global e estilos de base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;       /* Ocupa 100% da largura da janela */
+  height: 100vh;      /* Ocupa 100% da altura da janela */
+  overflow: hidden;   /* Esconde barras de rolagem indesejadas */
+}
+
+.interface_jogo {
+  display: flex;
+  gap: 20px;
+  width: 98vw;        /* Preenche quase toda a largura */
+  height: 95vh;       /* Preenche quase toda a altura */
+  border: 3px solid #ffffff;
+  border-radius: 25px;
+  padding: 20px;
+  background-color: #000000;
+}
+
+/* Menu Lateral */
+aside {
+  width: 250px;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+aside h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-transform: lowercase;
+}
+
+aside ol {
+  padding-left: 25px;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* Conteúdo Principal */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Status do Topo (HUD) */
+.status {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.status-left, .status-right {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Área do Tabuleiro */
+.tabuleiro {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.container_tabuleiro {
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  padding: 15px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.container_tabuleiro img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Barra de Progresso */
+.progresso {
+  display: flex;
+  justify-content: center; /* Centraliza a barra horizontalmente */
+  align-items: center;     /* Alinha verticalmente caso haja texto/label */
+  width: 100%;             /* Garante que o container ocupe toda a largura disponível */
+  margin-bottom: 15px;
+}
+
+progress {
+  width: 80%;              /* Ajuste a largura conforme preferir (ex: 80% ou 400px) */
+  height: 35px;
+  accent-color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 15px;
+  background-color: #222222;
+}
+
+/* Rodapé */
+footer {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
