@@ -10,6 +10,17 @@ body {
     color: white;
 }
 
+body > img[alt="fundo daora"] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.6);
+}
+
 main {
     max-width: 400px;
     margin: 50px auto;
@@ -17,9 +28,14 @@ main {
     text-align: center;
 }
 
-main img{
-    border-radius: 45%;
-    margin-bottom: 20px;
+main > img {
+    width: 150px; /* Garante que a imagem fica quadrada... */
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 30px;
+    border: 3px solid #8b0000; /* Borda vermelha temática */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 .campo{
