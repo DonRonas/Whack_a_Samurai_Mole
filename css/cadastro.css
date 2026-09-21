@@ -1,0 +1,123 @@
+/* Reset global e estilos de base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Lilita One", Arial, Helvetica, sans-serif;
+}
+ 
+body {
+  background-color: #141414;
+  color: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;       /* Ocupa 100% da largura da janela */
+  height: 100vh;      /* Ocupa 100% da altura da janela */
+  overflow: hidden;   /* Esconde barras de rolagem indesejadas */
+}
+ 
+/* Moldura principal (equivalente à .interface_jogo) */
+.interface_cadastro {
+  display: flex;
+  flex-direction: column;
+  width: 98vw;        /* Preenche quase toda a largura */
+  height: 95vh;       /* Preenche quase toda a altura */
+  border: 3px solid #d9d9d9;
+  border-radius: 30px;
+  padding: 35px 45px;
+  background-color: #141414;
+  overflow-y: auto;   /* Se a tela for baixa, o conteúdo rola dentro da moldura */
+}
+ 
+/* Título "cadastro:" no canto superior esquerdo */
+h1 {
+  font-size: 2.4rem;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  text-transform: lowercase;
+  color: #d9d9d9;
+}
+ 
+/* Formulário centralizado no restante da moldura */
+.formulario {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(22px, 5vh, 42px);
+  padding: 20px 0;
+}
+ 
+/* Campos de texto */
+.formulario input {
+  width: clamp(200px, 22vw, 320px);
+  height: 46px;
+  background-color: transparent;
+  color: #d9d9d9;
+  border: 3px solid #d9d9d9;
+  border-radius: 14px;
+  padding: 0 14px;
+  font-size: 1rem;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+ 
+.formulario input::placeholder {
+  color: #d9d9d9;
+  opacity: 1;
+}
+ 
+/* Foco visível para navegação por teclado */
+.formulario input:focus-visible {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+ 
+.formulario input:focus::placeholder {
+  opacity: 0.4;
+}
+ 
+/* Botão sign-in */
+.botao_signin {
+  width: clamp(200px, 22vw, 320px);
+  height: 68px;
+  margin-top: 10px;
+  background-color: transparent;
+  color: #d9d9d9;
+  border: 3px solid #d9d9d9;
+  border-radius: 18px;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+ 
+.botao_signin:hover {
+  background-color: #d9d9d9;
+  color: #141414;
+}
+ 
+.botao_signin:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
+}
+ 
+/* Telas pequenas */
+@media (max-width: 600px) {
+  .interface_cadastro {
+    padding: 25px 20px;
+    border-radius: 22px;
+  }
+ 
+  h1 {
+    font-size: 2rem;
+  }
+ 
+  .formulario input,
+  .botao_signin {
+    width: 100%;
+    max-width: 320px;
+  }
+}

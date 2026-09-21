@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro</title>
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+ 
+  <link rel="stylesheet" href="css/cadastro.css">
+</head>
+<body>
+ 
+  <div class="interface_cadastro">
+ 
+    <h1>cadastro:</h1>
+ 
+    <form class="formulario" action="#" method="post">
+ 
+      <input
+        type="text"
+        name="username"
+        placeholder="username"
+        aria-label="Nome de usuário"
+        autocomplete="username"
+        required
+      >
+ 
+      <input
+        type="text"
+        name="nascimento"
+        placeholder="xx/xx/xxxx"
+        aria-label="Data de nascimento"
+        inputmode="numeric"
+        maxlength="10"
+        pattern="\d{2}/\d{2}/\d{4}"
+        autocomplete="bday"
+        required
+      >
+ 
+      <input
+        type="text"
+        name="cpf"
+        placeholder="cpf"
+        aria-label="CPF"
+        inputmode="numeric"
+        maxlength="14"
+        required
+      >
+ 
+      <input
+        type="tel"
+        name="telefone"
+        placeholder="telefone:"
+        aria-label="Telefone"
+        autocomplete="tel"
+        required
+      >
+ 
+      <input
+        type="email"
+        name="email"
+        placeholder="email"
+        aria-label="E-mail"
+        autocomplete="email"
+        required
+      >
+ 
+      <input
+        type="password"
+        name="senha"
+        placeholder="senha"
+        aria-label="Senha"
+        autocomplete="new-password"
+        required
+      >
+ 
+      <button type="submit" class="botao_signin">sign-in</button>
+ 
+    </form>
+  </div>
+ 
+</body>
+</html>
