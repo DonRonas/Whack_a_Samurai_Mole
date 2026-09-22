@@ -1,129 +1,146 @@
-/* Reset global e estilos de base */
+/* Reset global e Tipografia */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Tiny5', sans-serif, serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tiny5', sans-serif;
 }
 
-.tiny5-regular {
-  font-family: "Tiny5", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
- 
 body {
-  background-image: url("../img/fundo2.jpg");
-  background-color: #d70909;
-  color: #d9d9d9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;       /* Ocupa 100% da largura da janela */
-  height: 100vh;      /* Ocupa 100% da altura da janela */
-  overflow: hidden;   /* Esconde barras de rolagem indesejadas */
+    background-image: url("../img/fundo2.jpg");
+    background-color: #d53a3acd;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply; /* Mescla a cor vermelha com a imagem de fundo */
+    color: #d9d9d9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }
- 
-.interface_cadastro {
-  background-color: #d70909;
-  display: flex;
-  flex-direction: column;
-  width: 98vw;        /* Preenche quase toda a largura */
-  height: 95vh;       /* Preenche quase toda a altura */
-  border: 3px solid #d9d9d9;
-  border-radius: 30px;
-  padding: 35px 45px;
-  overflow-y: auto;   /* Se a tela for baixa, o conteúdo rola dentro da moldura */
+
+/* Cabeçalho */
+header {
+    margin-bottom: 20px;
+    text-align: center;
 }
- 
-/* Título "cadastro:" no canto superior esquerdo */
-h1 {
-  font-size: 2.4rem;
-  font-weight: normal;
-  letter-spacing: 0.5px;
-  text-transform: lowercase;
-  color: #d9d9d9;
+
+header h1 {
+    font-size: 3rem;
+    color: #d9d9d9;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4); /* Efeito retro no título principal */
 }
- 
-/* Formulário centralizado no restante da moldura */
-.formulario {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(22px, 5vh, 42px);
-  padding: 20px 0;
-}
- 
-/* Campos de texto */
-.formulario input {
-  width: clamp(200px, 22vw, 320px);
-  height: 46px;
-  background-color: transparent;
-  color: #d9d9d9;
-  border: 3px solid #d9d9d9;
-  border-radius: 14px;
-  padding: 0 14px;
-  font-size: 1rem;
-  text-align: center;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
- 
-.formulario input::placeholder {
-  color: #d9d9d9;
-  opacity: 1;
-}
- 
-/* Foco visível para navegação por teclado */
-.formulario input:focus-visible {
-  border-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
-}
- 
-.formulario input:focus::placeholder {
-  opacity: 0.4;
-}
- 
-/* Botão sign-in */
-.botao_signin {
-  width: clamp(200px, 22vw, 320px);
-  height: 68px;
-  margin-top: 10px;
-  background-color: transparent;
-  color: #d9d9d9;
-  border: 3px solid #d9d9d9;
-  border-radius: 18px;
-  font-size: 2rem;
-  cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
-}
- 
-.botao_signin:hover {
-  background-color: #d9d9d9;
-  color: #141414;
-}
- 
-.botao_signin:focus-visible {
-  outline: 3px solid #ffffff;
-  outline-offset: 4px;
-}
- 
-/* Telas pequenas */
-@media (max-width: 600px) {
-  .interface_cadastro {
-    padding: 25px 20px;
-    border-radius: 22px;
-  }
- 
-  h1 {
-    font-size: 2rem;
-  }
- 
-  .formulario input,
-  .botao_signin {
+
+/* Container Principal (A moldura vermelha) */
+.box {
+    background-color: #d70909;
     width: 100%;
-    max-width: 320px;
-  }
+    max-width: 750px;
+    border: 3px solid #d9d9d9;
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); /* Sombra para dar destaque */
+}
+
+.box h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: normal;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* Layout do Formulário em Grelha (2 colunas) */
+form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px 20px; /* Espaçamento vertical e horizontal entre os campos */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Faz o campo de Senha ocupar a largura toda na última linha */
+.form-group:nth-child(7) {
+    grid-column: span 2;
+}
+
+label {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: #f0f0f0;
+}
+
+/* Estilo dos Inputs */
+input {
+    height: 46px;
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo levemente translúcido */
+    color: #ffffff;
+    border: 3px solid #d9d9d9;
+    border-radius: 14px;
+    padding: 0 15px;
+    font-size: 1.2rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Efeito de foco quando o usuário clica no campo */
+input:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Ajuste para o calendário do campo date ficar mais legível */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+/* Botão de Envio */
+button {
+    grid-column: span 2; /* Ocupa as duas colunas */
+    height: 60px;
+    margin-top: 15px;
+    background-color: transparent;
+    color: #d9d9d9;
+    border: 3px solid #d9d9d9;
+    border-radius: 18px;
+    font-size: 2.2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #d9d9d9;
+    color: #141414;
+    transform: translateY(-3px); /* Leve animação para cima */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsividade (Telas de Celular) */
+@media (max-width: 650px) {
+    form {
+        grid-template-columns: 1fr; /* Muda para 1 coluna no celular */
+    }
+
+    .form-group:nth-child(7),
+    button {
+        grid-column: span 1;
+    }
+
+    .box {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
 }

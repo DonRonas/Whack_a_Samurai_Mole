@@ -1,0 +1,159 @@
+/* Reset global e Tipografia */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tiny5', sans-serif;
+}
+
+body {
+    background-image: url("../img/fundo2.jpg");
+    background-color: #d53a3acd;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    color: #d9d9d9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 3rem;
+    color: #d9d9d9;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.box {
+    background-color: #d70909;
+    width: 100%;
+    max-width: 850px;
+    border: 3px solid #d9d9d9;
+    border-radius: 30px;
+    padding: 35px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.box h2 {
+    text-align: center;
+    font-size: 2.3rem;
+    margin-bottom: 25px;
+    font-weight: normal;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+.tabela-container {
+    width: 100%;
+    overflow-x: auto; /* Adiciona scroll horizontal em telas pequenas */
+}
+
+/* Estrutura CSS Grid */
+.grid-historico {
+    display: flex;
+    flex-direction: column;
+    min-width: 600px; /* Garante que os dados não fiquem esmagados */
+    font-size: 1.2rem;
+}
+
+.linha-cabecalho, 
+.linha-dados {
+    display: grid;
+    /* Divide em 6 colunas com tamanhos proporcionais */
+    grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 1.5fr; 
+    align-items: center;
+    text-align: center;
+}
+
+.linha-cabecalho {
+    background-color: rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    border-bottom: 3px solid #d9d9d9;
+    letter-spacing: 1px;
+}
+
+.linha-dados {
+    border-bottom: 1px solid rgba(217, 217, 217, 0.3);
+    transition: background-color 0.2s;
+}
+
+.linha-dados:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.celula {
+    padding: 14px 10px;
+}
+
+/* Badges de Resultado */
+.status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    border: 1px solid transparent;
+}
+
+.status.vitoria {
+    background-color: rgba(255, 215, 0, 0.2);
+    color: #ffd700;
+    border-color: #ffd700;
+}
+
+.status.derrota {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ff8080;
+    border-color: #ff8080;
+}
+
+.status.desistencia {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #d9d9d9;
+    border-color: #d9d9d9;
+}
+
+/* Botão Voltar */
+.acoes {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.link-voltar {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.4rem;
+    border: 2px solid #ffffff;
+    padding: 10px 24px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.link-voltar:hover {
+    background-color: #ffffff;
+    color: #d70909;
+}
+
+/* Responsividade */
+@media (max-width: 650px) {
+    .grid-historico {
+        font-size: 1rem;
+    }
+    
+    .celula {
+        padding: 10px 5px;
+    }
+    
+    .box {
+        padding: 20px 15px;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+}

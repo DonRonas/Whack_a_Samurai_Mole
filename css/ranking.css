@@ -1,0 +1,135 @@
+/* Reset global e Tipografia */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tiny5', sans-serif;
+}
+
+body {
+    background-image: url("../img/fundo2.jpg");
+    background-color: #d53a3acd;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    color: #d9d9d9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 3rem;
+    color: #d9d9d9;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.box {
+    background-color: #d70909;
+    width: 100%;
+    max-width: 800px;
+    border: 3px solid #d9d9d9;
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.box h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    font-weight: normal;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+.tabela-container {
+    width: 100%;
+    overflow-x: auto; /* Permite rolagem horizontal em telas finas */
+}
+
+/* Estrutura CSS Grid */
+.grid-ranking {
+    display: flex;
+    flex-direction: column;
+    min-width: 550px; /* Evita que o conteúdo quebre no celular */
+    font-size: 1.4rem;
+}
+
+.linha-cabecalho, 
+.linha-dados {
+    display: grid;
+    /* Divide em 5 colunas com proporções ideais para o ranking */
+    grid-template-columns: 0.8fr 2.5fr 1.5fr 1fr 1fr; 
+    align-items: center;
+    text-align: center;
+}
+
+.linha-cabecalho {
+    background-color: rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    border-bottom: 3px solid #d9d9d9;
+    letter-spacing: 1px;
+}
+
+.linha-dados {
+    border-bottom: 1px solid rgba(217, 217, 217, 0.3);
+    transition: background-color 0.2s;
+}
+
+.linha-dados:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    cursor: default;
+}
+
+.celula {
+    padding: 12px 10px;
+}
+
+/* Destaque para o Top 3 */
+.top1 {
+    color: #ffd700;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+}
+
+.top2 {
+    color: #e0e0e0;
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.top3 {
+    color: #cd7f32;
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+/* Botão Voltar */
+.acoes {
+    text-align: center;
+    margin-top: 35px;
+}
+
+.link-voltar {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    border: 2px solid #ffffff;
+    padding: 10px 24px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.link-voltar:hover {
+    background-color: #ffffff;
+    color: #d70909;
+}
+
