@@ -34,7 +34,7 @@ body {
 
 main {
   background-color: #000000;
-  background-image: url("../img/backgroundx.jpg");
+  background-image: url("../img/background_desert.gif");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -46,13 +46,14 @@ aside {
 }
 
 .interface_jogo {
+  background-image: url("../img/fundo2.jpg");
   display: flex;
   gap: 20px;
   width: 98vw;        /* Preenche quase toda a largura */
   height: 95vh;       /* Preenche quase toda a altura */
   border: 3px solid #ffffff;
   border-radius: 25px;
-  padding: 20px;
+  padding: 10px;
   background-color: #000000;
 }
 
