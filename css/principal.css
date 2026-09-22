@@ -1,20 +1,43 @@
-/* Reset global e estilos de base */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Tiny5', sans-serif, serif;
+}
+
+.tiny5-regular {
+  font-family: "Tiny5", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 body {
   background-color: #000000;
+  background-image: url("../img/fundo2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;       /* Ocupa 100% da largura da janela */
-  height: 100vh;      /* Ocupa 100% da altura da janela */
-  overflow: hidden;   /* Esconde barras de rolagem indesejadas */
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+main {
+  background-color: #000000;
+  background-image: url("../img/backgroundx.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+aside {
+  background-color: #cf0707;
 }
 
 .interface_jogo {

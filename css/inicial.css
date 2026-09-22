@@ -4,8 +4,19 @@
     box-sizing: border-box;
 }
 
+.tiny5-regular {
+  font-family: "Tiny5", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
-    font-family: 'Times New Roman', Times, serif;
+    background-image: url("../img/fundo2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Tiny5', sans-serif, serif;
     background-color: black;
     color: white;
 }

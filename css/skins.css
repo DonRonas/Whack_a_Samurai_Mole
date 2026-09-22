@@ -1,0 +1,103 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Tiny5', sans-serif, serif;
+}
+
+.body {
+ background-color: #000000;
+ background-image: url("../img/fogo.jpg");
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center;
+ background-attachment: fixed;
+ color: #ffffff;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 100vh;
+ padding: 20px;
+
+}
+
+ul {
+  list-style: none;
+}
+
+.tiny5-regular {
+  font-family: "Tiny5", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.linha {
+  border: none;
+  border-top: 2px solid #060606;
+  border-bottom: 2px solid #ffffff;
+  margin: 20px 0;
+}
+
+.listaskin {
+  width: 100%;
+  max-width: 800px;
+  border: 4px solid #000000;
+  border-radius: 25px;
+  padding: 30px;
+  background-color: #c90303;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  color: #000000;
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.lista {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    scroll-behavior: smooth;
+}
+
+.lista::-webkit-scrollbar {
+ height: 10px;
+}
+.lista::-webkit-scrollbar-track {
+ background: #3a3a3a;
+ border-radius: 5px;
+}
+.lista::-webkit-scrollbar-thumb {
+ background: #ffffff;
+ border-radius: 5px;
+}
+.lista::-webkit-scrollbar-thumb:hover {
+ background: #cccccc;
+}  
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.skins {
+    width: 100px;
+    height: 100px;
+    background-color: #5a8f9b;
+    border: 2px solid #ffffff;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.nome {
+  color: #000000;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
