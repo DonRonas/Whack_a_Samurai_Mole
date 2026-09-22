@@ -31,16 +31,9 @@ ul {
   font-style: normal;
 }
 
-.linha {
-  border: none;
-  border-top: 2px solid #060606;
-  border-bottom: 2px solid #ffffff;
-  margin: 20px 0;
-}
-
-.listaskin {
+.listabestiario {
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   border: 4px solid #000000;
   border-radius: 25px;
   padding: 30px;
@@ -67,15 +60,15 @@ h1 {
  height: 10px;
 }
 .lista::-webkit-scrollbar-track {
- background: #3a3a3a;
+ background: #000000;
  border-radius: 5px;
 }
 .lista::-webkit-scrollbar-thumb {
- background: #ffffff;
+ background: brown;
  border-radius: 5px;
 }
 .lista::-webkit-scrollbar-thumb:hover {
- background: #cccccc;
+ background: beige;
 }  
 
 .item {
@@ -84,9 +77,11 @@ h1 {
     align-items: center;
     text-align: center;
     flex-shrink: 0;
+    text-wrap: wrap;
+    max-width: 250px;
 }
 
-.skins {
+.beast {
     width: 100px;
     height: 100px;
     background-color: #5a8f9b;
@@ -102,10 +97,14 @@ h1 {
   font-size: 1.5rem;
 }
 
-.comprar {
-  background-color: #df0000;
+.lore {
+  color: #000000;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.equipar {
-  background-color: #df0000;
+.fraqueza {
+  color: #000000;
+  font-size: 1.2rem;
 }
