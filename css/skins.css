@@ -6,12 +6,12 @@
 }
 
 .body {
- background-color: #000000;
- background-image: url("../img/fogo.jpg");
+ background-image: url("../img/fundo2.jpg");
  background-repeat: no-repeat;
  background-size: cover;
  background-position: center;
  background-attachment: fixed;
+ background-blend-mode: multiply;
  color: #ffffff;
  display: flex;
  justify-content: center;
