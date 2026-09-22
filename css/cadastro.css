@@ -13,7 +13,8 @@
 }
  
 body {
-  background-color: #141414;
+  background-image: url("../img/fundo2.jpg");
+  background-color: #d70909;
   color: #d9d9d9;
   display: flex;
   justify-content: center;
@@ -23,8 +24,8 @@ body {
   overflow: hidden;   /* Esconde barras de rolagem indesejadas */
 }
  
-/* Moldura principal (equivalente à .interface_jogo) */
 .interface_cadastro {
+  background-color: #d70909;
   display: flex;
   flex-direction: column;
   width: 98vw;        /* Preenche quase toda a largura */
@@ -32,7 +33,6 @@ body {
   border: 3px solid #d9d9d9;
   border-radius: 30px;
   padding: 35px 45px;
-  background-color: #141414;
   overflow-y: auto;   /* Se a tela for baixa, o conteúdo rola dentro da moldura */
 }
  
