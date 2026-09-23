@@ -53,22 +53,23 @@ html, body {
   color: #ffe873;
 }
 
-.back-btn {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  font-family: 'Press Start 2P', 'Courier New', monospace;
-  font-size: clamp(0.6rem, 2vw, 0.8rem);
-  background: #000000;
-  color: #ffd700;
-  border: 2px solid #ffd700;
-  padding: 10px 14px;
-  cursor: pointer;
-  text-shadow: 0 0 5px rgba(255, 215, 0, 0.7);
-  box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+.acoes {
+    text-align: center;
+    margin-top: 30px;
 }
 
-.back-btn:hover {
-  background: #ffd700;
-  color: #000000;
+.link-voltar {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.4rem;
+    border: 2px solid #ffffff;
+    padding: 10px 24px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.link-voltar:hover {
+    background-color: #ffffff;
+    color: #d70909;
 }
