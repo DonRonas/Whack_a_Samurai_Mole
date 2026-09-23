@@ -1,4 +1,3 @@
-/* Reset global e Tipografia */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -50,21 +49,18 @@ header h1 {
 
 .tabela-container {
     width: 100%;
-    overflow-x: auto; /* Adiciona scroll horizontal em telas pequenas */
 }
 
-/* Estrutura CSS Grid */
 .grid-historico {
     display: flex;
     flex-direction: column;
-    min-width: 600px; /* Garante que os dados não fiquem esmagados */
+    min-width: 600px;
     font-size: 1.2rem;
 }
 
 .linha-cabecalho, 
 .linha-dados {
     display: grid;
-    /* Divide em 6 colunas com tamanhos proporcionais */
     grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 1.5fr; 
     align-items: center;
     text-align: center;
@@ -90,7 +86,6 @@ header h1 {
     padding: 14px 10px;
 }
 
-/* Badges de Resultado */
 .status {
     display: inline-block;
     padding: 4px 10px;
@@ -99,25 +94,6 @@ header h1 {
     border: 1px solid transparent;
 }
 
-.status.vitoria {
-    background-color: rgba(255, 215, 0, 0.2);
-    color: #ffd700;
-    border-color: #ffd700;
-}
-
-.status.derrota {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: #ff8080;
-    border-color: #ff8080;
-}
-
-.status.desistencia {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #d9d9d9;
-    border-color: #d9d9d9;
-}
-
-/* Botão Voltar */
 .acoes {
     text-align: center;
     margin-top: 30px;
@@ -139,21 +115,3 @@ header h1 {
     color: #d70909;
 }
 
-/* Responsividade */
-@media (max-width: 650px) {
-    .grid-historico {
-        font-size: 1rem;
-    }
-    
-    .celula {
-        padding: 10px 5px;
-    }
-    
-    .box {
-        padding: 20px 15px;
-    }
-
-    header h1 {
-        font-size: 2.2rem;
-    }
-}

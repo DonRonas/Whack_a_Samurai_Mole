@@ -1,62 +1,77 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Interface do Jogo</title>
-  <link rel="icon" type="image/x-icon" href="img/topeira_samurai.png" alt="icone do site">
-  <link rel="stylesheet" href="css/principal.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Interface do Jogo</title>
+    <link rel="icon" type="image/x-icon" href="img/topeira_samurai.png" alt="icone do site">
+    
+    <link rel="stylesheet" href="css/principal.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="interface_jogo">
-    <aside>
 
-            <h1>MENU</h1>
-            <nav>
-                <ol>
-                    <p class="tipo_jogo">-Clássico</p> <p class="tipo_jogo">-Bombástico</p>
-                    <li><a href="skins.html">Skins</a></li>
-                    <li><a href="bestiario.html">Bestiario</a></li>
-                    <li><a href="ranking.html">Ranking</a></li>
-                    <li><a href="historico.html">Historico</a></li>
-                    <li>Configurações</li>
-                    <li><a href="inicial.html">Sair</a></li>
-                    <li><a href="creditos.html">Créditos</a></li>
-                    </ol>
-            </nav>
-    </aside>
-    <main>
-
-        <header class="status">
-            <div class="status-left">
-                <p>Nivel:100</p>
-                <p>Time:59</p>
+        <div class="titulo-jogo">
+            <h1>Whack a Mole Samurai</h1>
+        </div>
+        
+        <!-- HUD Superior -->
+        <header class="hud-topo">
+            <div class="status-box">
+                <p>Nivel: <span>100</span></p>
+                <p>Tempo: <span>59s</span></p>
             </div>
-
-            <div class="status-right">
-                <p>Score:1000</p>
-                <p>Kill:346</p>
+           
+            <div class="status-box">
+                <p>Score: <span>1000</span></p>
+                <p>Kills: <span>346</span></p>
             </div>
         </header>
 
-        <section class="tabuleiro">
-            <div class="container_tabuleiro">
-                <img src="img/tabuleiro.jpeg" alt="tabuleiro">
-            </div>
-        </section>
+  
+        <div class="area-central">
+            
 
-        <section class="progresso">
-            <progress value="50" max="100"></progress>
-        </section>
+            <main class="tabuleiro-container">
+                <div class="borda-tabuleiro">
+                    <img src="img/tabuleiro.png" alt="tabuleiro do jogo">
+                </div>
+            </main>
 
-        <footer>
-            <p>SEPPUKU</p>
+
+            <aside class="menu-lateral">
+                <h2>MENU</h2>
+                <nav>
+                    <ol>
+                        <li><p class="tipo_jogo">[ Modos ]</p></li>
+                        <li><p class="opcao-sub">- Clássico</p></li>
+                        <li><p class="opcao-sub">- Bombástico</p></li>
+                        <hr>
+                        <li><a href="skins.html">Skins</a></li>
+                        <li><a href="bestiario.html">Bestiário</a></li>
+                        <li><a href="ranking.html">Ranking</a></li>
+                        <li><a href="historico.html">Histórico</a></li>
+                        <li>Configurações</li>
+                        <hr>
+                        <li><a href="creditos.html">Créditos</a></li>
+                        <li class="sair"><a href="inicial.html">Sair</a></li>
+                    </ol>
+                </nav>
+            </aside>
+        </div>
+
+
+        <footer class="hud-rodape">
+            <label for="progresso-fase">Progresso da Fase</label>
+            <progress id="progresso-fase" value="50" max="100"></progress>
         </footer>
 
-    </main>
+        <div class="desistir-fase">
+                <p>SEPPUKU</p>
+        </div>
 
     </div>
 

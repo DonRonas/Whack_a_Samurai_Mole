@@ -1,4 +1,3 @@
-/* Reset global e Tipografia */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -11,7 +10,7 @@ body {
     background-color: #d53a3acd;
     background-size: cover;
     background-position: center;
-    background-blend-mode: multiply; /* Mescla a cor vermelha com a imagem de fundo */
+    background-blend-mode: multiply; 
     color: #d9d9d9;
     display: flex;
     flex-direction: column;
@@ -31,10 +30,10 @@ header h1 {
     font-size: 3rem;
     color: #d9d9d9;
     letter-spacing: 2px;
-    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4); /* Efeito retro no título principal */
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4); 
 }
 
-/* Container Principal (A moldura vermelha) */
+
 .box {
     background-color: #d70909;
     width: 100%;
@@ -42,7 +41,7 @@ header h1 {
     border: 3px solid #d9d9d9;
     border-radius: 30px;
     padding: 40px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); /* Sombra para dar destaque */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); 
 }
 
 .box h2 {
@@ -53,11 +52,11 @@ header h1 {
     text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
 }
 
-/* Layout do Formulário em Grelha (2 colunas) */
+
 form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px 20px; /* Espaçamento vertical e horizontal entre os campos */
+    gap: 15px 20px; 
 }
 
 .form-group {
@@ -65,7 +64,7 @@ form {
     flex-direction: column;
 }
 
-/* Faz o campo de Senha ocupar a largura toda na última linha */
+
 .form-group:nth-child(7) {
     grid-column: span 2;
 }
@@ -76,10 +75,10 @@ label {
     color: #f0f0f0;
 }
 
-/* Estilo dos Inputs */
+
 input {
     height: 46px;
-    background-color: rgba(255, 255, 255, 0.1); /* Fundo levemente translúcido */
+    background-color: rgba(255, 255, 255, 0.1); 
     color: #ffffff;
     border: 3px solid #d9d9d9;
     border-radius: 14px;
@@ -89,22 +88,22 @@ input {
     transition: all 0.3s ease;
 }
 
-/* Efeito de foco quando o usuário clica no campo */
+
 input:focus {
     background-color: rgba(255, 255, 255, 0.2);
     border-color: #ffffff;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-/* Ajuste para o calendário do campo date ficar mais legível */
+
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
     cursor: pointer;
 }
 
-/* Botão de Envio */
+
 button {
-    grid-column: span 2; /* Ocupa as duas colunas */
+    grid-column: span 2; 
     height: 60px;
     margin-top: 15px;
     background-color: transparent;
@@ -120,14 +119,14 @@ button {
 button:hover {
     background-color: #d9d9d9;
     color: #141414;
-    transform: translateY(-3px); /* Leve animação para cima */
+    transform: translateY(-3px); 
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsividade (Telas de Celular) */
 @media (max-width: 650px) {
     form {
-        grid-template-columns: 1fr; /* Muda para 1 coluna no celular */
+        grid-template-columns: 1fr; 
     }
 
     .form-group:nth-child(7),

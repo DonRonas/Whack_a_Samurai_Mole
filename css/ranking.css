@@ -1,4 +1,3 @@
-/* Reset global e Tipografia */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -50,21 +49,19 @@ header h1 {
 
 .tabela-container {
     width: 100%;
-    overflow-x: auto; /* Permite rolagem horizontal em telas finas */
+    overflow-x: auto; 
 }
 
-/* Estrutura CSS Grid */
 .grid-ranking {
     display: flex;
     flex-direction: column;
-    min-width: 550px; /* Evita que o conteúdo quebre no celular */
+    min-width: 550px; 
     font-size: 1.4rem;
 }
 
 .linha-cabecalho, 
 .linha-dados {
     display: grid;
-    /* Divide em 5 colunas com proporções ideais para o ranking */
     grid-template-columns: 0.8fr 2.5fr 1.5fr 1fr 1fr; 
     align-items: center;
     text-align: center;
@@ -91,7 +88,6 @@ header h1 {
     padding: 12px 10px;
 }
 
-/* Destaque para o Top 3 */
 .top1 {
     color: #ffd700;
     font-size: 1.6rem;
@@ -111,7 +107,6 @@ header h1 {
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
 }
 
-/* Botão Voltar */
 .acoes {
     text-align: center;
     margin-top: 35px;
