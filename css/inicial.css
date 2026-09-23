@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+    color: white;
+}
+
 .tiny5-regular {
   font-family: "Tiny5", sans-serif;
   font-weight: 400;
