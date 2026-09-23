@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações</title>
+    <link rel="icon" type="image/x-icon" href="img/topeira_samurai.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/configuracoes.css">
+</head>
+<body class="carregando">
+    <header>
+        <h1>Whack a Samurai Mole</h1>
+    </header>
+
+    <main>
+        <div class="box">
+            <h2>Configurações</h2>
+            <fieldset class="secao">
+                <legend>Tabuleiro</legend>
+
+                <div class="opcao">
+                    <div class="texto">
+                        <span class="nome">Tamanho da grade</span>
+                        <span class="descricao">Quanto maior, mais buracos e mais toupeiras na tela.</span>
+                    </div>
+                    <div class="controle">
+                        <div class="segmentado" role="radiogroup" aria-label="Tamanho do tabuleiro">
+                            <input type="radio" name="tamanho" id="tam3" value="3">
+                            <label for="tam3">3x3</label>
+
+                            <input type="radio" name="tamanho" id="tam4" value="4">
+                            <label for="tam4">4x4</label>
+
+                            <input type="radio" name="tamanho" id="tam6" value="6">
+                            <label for="tam6">6x6</label>
+
+                            <input type="radio" name="tamanho" id="tam8" value="8">
+                            <label for="tam8">8x8</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="previa-area">
+                    <div id="previaTabuleiro" class="previa-tabuleiro" aria-hidden="true"></div>
+                    <p id="previaTexto" class="previa-texto"></p>
+                </div>
+            </fieldset>
+            <fieldset class="secao">
+                <legend>Som</legend>
+
+                <div class="opcao">
+                    <div class="texto">
+                        <label class="nome" for="som">Som do jogo</label>
+                        <span class="descricao">Liga ou desliga todos os sons.</span>
+                    </div>
+                    <div class="controle">
+                        <label class="switch">
+                            <input type="checkbox" id="som" role="switch">
+                            <span class="trilho"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="opcao">
+                    <div class="texto">
+                        <label class="nome" for="volMusica">Volume da música</label>
+                    </div>
+                    <div class="controle">
+                        <input type="range" id="volMusica" min="0" max="100" step="5">
+                        <output for="volMusica" id="volMusicaValor">0%</output>
+                    </div>
+                </div>
+
+                <div class="opcao">
+                    <div class="texto">
+                        <label class="nome" for="volEfeitos">Volume dos efeitos</label>
+                        <span class="descricao">Marteladas, toupeiras e explosões.</span>
+                    </div>
+                    <div class="controle">
+                        <input type="range" id="volEfeitos" min="0" max="100" step="5">
+                        <output for="volEfeitos" id="volEfeitosValor">0%</output>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="secao">
+                <legend>Jogo</legend>
+
+                <div class="opcao">
+                    <div class="texto">
+                        <span class="nome">Dificuldade</span>
+                        <span class="descricao">Muda a velocidade e o tempo que as toupeiras ficam fora do buraco.</span>
+                    </div>
+                    <div class="controle">
+                        <div class="segmentado" role="radiogroup" aria-label="Dificuldade">
+                            <input type="radio" name="dificuldade" id="dif-facil" value="facil">
+                            <label for="dif-facil">Fácil</label>
+
+                            <input type="radio" name="dificuldade" id="dif-normal" value="normal">
+                            <label for="dif-normal">Normal</label>
+
+                            <input type="radio" name="dificuldade" id="dif-dificil" value="dificil">
+                            <label for="dif-dificil">Difícil</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="opcao">
+                    <div class="texto">
+                        <label class="nome" for="tremor">Tremor de tela</label>
+                        <span class="descricao">A tela chacoalha quando você acerta uma explosão.</span>
+                    </div>
+                    <div class="controle">
+                        <label class="switch">
+                            <input type="checkbox" id="tremor" role="switch">
+                            <span class="trilho"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="opcao">
+                    <div class="texto">
+                        <label class="nome" for="vibracao">Vibração</label>
+                        <span class="descricao">Vibra ao acertar (só funciona em celulares compatíveis).</span>
+                    </div>
+                    <div class="controle">
+                        <label class="switch">
+                            <input type="checkbox" id="vibracao" role="switch">
+                            <span class="trilho"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="opcao">
+                    <div class="texto">
+                        <label class="nome" for="pausaAuto">Pausar ao sair da aba</label>
+                        <span class="descricao">Pausa a partida se você trocar de aba ou minimizar.</span>
+                    </div>
+                    <div class="controle">
+                        <label class="switch">
+                            <input type="checkbox" id="pausaAuto" role="switch">
+                            <span class="trilho"></span>
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <p id="aviso" class="aviso" role="status" aria-live="polite"></p>
+
+            <p class="acoes">
+                <button type="button" id="restaurar" class="link-voltar">Restaurar padrão</button>
+                <a href="principal.html" class="link-voltar">Voltar ao Jogo</a>
+            </p>
+        </div>
+    </main>
+
+    <script src="js/configuracoes.js"></script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+/* Reset global e Tipografia */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tiny5', sans-serif;
+}
+
+body {
+    background-image: url("../img/fundo2.jpg");
+    background-color: #d53a3acd;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    color: #d9d9d9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 3rem;
+    color: #d9d9d9;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.box {
+    background-color: #d70909;
+    width: 100%;
+    max-width: 850px;
+    border: 3px solid #d9d9d9;
+    border-radius: 30px;
+    padding: 35px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.box h2 {
+    text-align: center;
+    font-size: 2.3rem;
+    margin-bottom: 25px;
+    font-weight: normal;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Seções ---------- */
+.secao {
+    border: none;
+    border-top: 3px solid #d9d9d9;
+    margin-bottom: 25px;
+    padding-top: 5px;
+}
+
+.secao legend {
+    font-size: 1.5rem;
+    color: #ffffff;
+    letter-spacing: 1px;
+    padding: 0 14px;
+    margin-left: 10px;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Linha de opção ---------- */
+.opcao {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 10px;
+    border-bottom: 1px solid rgba(217, 217, 217, 0.3);
+    transition: background-color 0.2s;
+}
+
+.opcao:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.opcao:last-of-type {
+    border-bottom: none;
+}
+
+.texto {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nome {
+    font-size: 1.3rem;
+    color: #ffffff;
+}
+
+.descricao {
+    font-size: 1rem;
+    color: #d9d9d9;
+    opacity: 0.85;
+}
+
+.controle {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ---------- Botões segmentados (radio) ---------- */
+.segmentado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.segmentado input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.segmentado label {
+    font-size: 1.2rem;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 12px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.segmentado label:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.segmentado input:checked + label {
+    background-color: #ffffff;
+    color: #d70909;
+}
+
+.segmentado input:focus-visible + label {
+    outline: 3px solid #ffd700;
+    outline-offset: 2px;
+}
+
+/* ---------- Sliders ---------- */
+input[type="range"] {
+    width: 180px;
+    accent-color: #ffd700;
+    cursor: pointer;
+}
+
+output {
+    min-width: 52px;
+    text-align: right;
+    font-size: 1.2rem;
+    color: #ffd700;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.desativado {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* ---------- Switch (liga/desliga) ---------- */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 62px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.switch input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.trilho {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.trilho::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.switch input:checked + .trilho {
+    background-color: rgba(255, 215, 0, 0.25);
+    border-color: #ffd700;
+}
+
+.switch input:checked + .trilho::before {
+    transform: translateX(30px);
+    background-color: #ffd700;
+}
+
+.switch input:focus-visible + .trilho {
+    outline: 3px solid #ffd700;
+    outline-offset: 3px;
+}
+
+/* ---------- Prévia do tabuleiro ---------- */
+.previa-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0 5px;
+}
+
+.previa-tabuleiro {
+    display: grid;
+    gap: 5px;
+    width: 150px;
+    height: 150px;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid #d9d9d9;
+    border-radius: 15px;
+}
+
+.previa-tabuleiro span {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.7);
+}
+
+.previa-texto {
+    font-size: 1.1rem;
+    color: #d9d9d9;
+}
+
+/* ---------- Aviso de salvo ---------- */
+.aviso {
+    min-height: 1.6rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ffd700;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.aviso.visivel {
+    opacity: 1;
+}
+
+/* ---------- Botões de ação (mesmo estilo do Voltar) ---------- */
+.acoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.link-voltar {
+    background: transparent;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.4rem;
+    border: 2px solid #ffffff;
+    padding: 10px 24px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.link-voltar:hover {
+    background-color: #ffffff;
+    color: #d70909;
+}
+
+/* Evita que switches e botões "deslizem" ao abrir a tela */
+body.carregando *,
+body.carregando *::before {
+    transition: none !important;
+}
+
+/* ---------- Tremor (usado na prévia da opção "Tremor de tela") ---------- */
+@keyframes tremer {
+    0%, 100% { transform: translate(0, 0); }
+    20% { transform: translate(-6px, 3px); }
+    40% { transform: translate(5px, -4px); }
+    60% { transform: translate(-4px, -3px); }
+    80% { transform: translate(4px, 4px); }
+}
+
+.tremendo {
+    animation: tremer 0.35s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tremendo {
+        animation: none;
+    }
+}
+
+/* ---------- Responsividade ---------- */
+@media (max-width: 650px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    .box {
+        padding: 20px 15px;
+    }
+
+    .opcao {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .controle,
+    .segmentado {
+        justify-content: flex-start;
+    }
+
+    input[type="range"] {
+        flex: 1;
+        width: auto;
+    }
+}
