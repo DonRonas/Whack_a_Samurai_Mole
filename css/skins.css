@@ -109,3 +109,24 @@ h1 {
 .equipar {
   background-color: #df0000;
 }
+
+.acoes {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.link-voltar {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.4rem;
+    border: 2px solid #ffffff;
+    padding: 10px 24px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.link-voltar:hover {
+    background-color: #ffffff;
+    color: #d70909;
+}

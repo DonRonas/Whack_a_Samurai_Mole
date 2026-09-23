@@ -99,16 +99,10 @@ header h1 {
     border: 1px solid transparent;
 }
 
-.status.vitoria {
+.tempo {
     background-color: rgba(255, 215, 0, 0.2);
     color: #ffd700;
     border-color: #ffd700;
-}
-
-.status.derrota {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: #ff8080;
-    border-color: #ff8080;
 }
 
 .status.desistencia {
