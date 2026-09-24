@@ -1,4 +1,3 @@
-/* Reset global e Tipografia */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -48,7 +47,6 @@ header h1 {
     text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
 }
 
-/* ---------- Seções ---------- */
 .secao {
     border: none;
     border-top: 3px solid #d9d9d9;
@@ -65,7 +63,6 @@ header h1 {
     text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
 }
 
-/* ---------- Linha de opção ---------- */
 .opcao {
     display: grid;
     grid-template-columns: 1.4fr 1fr;
@@ -108,7 +105,6 @@ header h1 {
     gap: 12px;
 }
 
-/* ---------- Botões segmentados (radio) ---------- */
 .segmentado {
     display: flex;
     flex-wrap: wrap;
@@ -147,7 +143,6 @@ header h1 {
     outline-offset: 2px;
 }
 
-/* ---------- Sliders ---------- */
 input[type="range"] {
     width: 180px;
     accent-color: #ffd700;
@@ -167,7 +162,6 @@ output {
     pointer-events: none;
 }
 
-/* ---------- Switch (liga/desliga) ---------- */
 .switch {
     position: relative;
     display: inline-block;
@@ -220,7 +214,6 @@ output {
     outline-offset: 3px;
 }
 
-/* ---------- Prévia do tabuleiro ---------- */
 .previa-area {
     display: flex;
     flex-direction: column;
@@ -251,7 +244,6 @@ output {
     color: #d9d9d9;
 }
 
-/* ---------- Aviso de salvo ---------- */
 .aviso {
     min-height: 1.6rem;
     text-align: center;
@@ -266,7 +258,6 @@ output {
     opacity: 1;
 }
 
-/* ---------- Botões de ação (mesmo estilo do Voltar) ---------- */
 .acoes {
     display: flex;
     flex-wrap: wrap;
@@ -294,13 +285,11 @@ output {
     color: #d70909;
 }
 
-/* Evita que switches e botões "deslizem" ao abrir a tela */
 body.carregando *,
 body.carregando *::before {
     transition: none !important;
 }
 
-/* ---------- Tremor (usado na prévia da opção "Tremor de tela") ---------- */
 @keyframes tremer {
     0%, 100% { transform: translate(0, 0); }
     20% { transform: translate(-6px, 3px); }
@@ -311,10 +300,4 @@ body.carregando *::before {
 
 .tremendo {
     animation: tremer 0.35s;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .tremendo {
-        animation: none;
-    }
 }
