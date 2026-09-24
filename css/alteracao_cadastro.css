@@ -1,0 +1,145 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tiny5', sans-serif;
+}
+
+body {
+    background-image: url("../img/fundo2.jpg");
+    background-color: #d53a3acd;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply; 
+    color: #d9d9d9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Cabeçalho */
+header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    color: #d9d9d9;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4); 
+}
+
+
+.box {
+    background-color: #d70909;
+    width: 100%;
+    max-width: 750px;
+    border: 3px solid #d9d9d9;
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); 
+}
+
+.box h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: normal;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+
+form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px 20px; 
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.form-group:nth-child(7) {
+    grid-column: span 2;
+}
+
+label {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: #f0f0f0;
+}
+
+
+input {
+    height: 46px;
+    background-color: rgba(255, 255, 255, 0.1); 
+    color: #ffffff;
+    border: 3px solid #d9d9d9;
+    border-radius: 14px;
+    padding: 0 15px;
+    font-size: 1.2rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+
+input:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+
+button {
+    grid-column: span 2; 
+    height: 60px;
+    margin-top: 15px;
+    background-color: transparent;
+    color: #d9d9d9;
+    border: 3px solid #d9d9d9;
+    border-radius: 18px;
+    font-size: 2.2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #d9d9d9;
+    color: #141414;
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsividade (Telas de Celular) */
+@media (max-width: 650px) {
+    form {
+        grid-template-columns: 1fr; 
+    }
+
+    .form-group:nth-child(7),
+    button {
+        grid-column: span 1;
+    }
+
+    .box {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+}

@@ -318,29 +318,3 @@ body.carregando *::before {
         animation: none;
     }
 }
-
-/* ---------- Responsividade ---------- */
-@media (max-width: 650px) {
-    header h1 {
-        font-size: 2.2rem;
-    }
-
-    .box {
-        padding: 20px 15px;
-    }
-
-    .opcao {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .controle,
-    .segmentado {
-        justify-content: flex-start;
-    }
-
-    input[type="range"] {
-        flex: 1;
-        width: auto;
-    }
-}

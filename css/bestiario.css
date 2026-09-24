@@ -94,10 +94,10 @@ h1 {
 }
 
 .beast {
-    width: 100px;
-    height: 100px;
-    background-color: #5a8f9b;
-    border: 2px solid #ffffff;
+    width: 200px;
+    height: 200px;
+    background-color: #d74545;
+    border: 2px solid #000000;
     border-radius: 12px;
     margin-bottom: 10px;
     object-fit: cover;

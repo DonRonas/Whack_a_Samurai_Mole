@@ -122,24 +122,3 @@ button:hover {
     transform: translateY(-3px); 
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
-
-/* Responsividade (Telas de Celular) */
-@media (max-width: 650px) {
-    form {
-        grid-template-columns: 1fr; 
-    }
-
-    .form-group:nth-child(7),
-    button {
-        grid-column: span 1;
-    }
-
-    .box {
-        padding: 30px 20px;
-        border-radius: 20px;
-    }
-
-    header h1 {
-        font-size: 2.2rem;
-    }
-}
