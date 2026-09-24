@@ -138,7 +138,7 @@ body {
   padding-left: 10px;
 }
 
-.menu-lateral li:hover:not(:first-child) {
+.menu-lateral li:hover {
   background-color: #fff;
   color: #cf0707;
   cursor: pointer;
