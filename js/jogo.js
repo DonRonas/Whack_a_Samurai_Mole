@@ -8,23 +8,27 @@
   const N = opcoes.tamanho;
   const TOTAL = N * N;
   const DIFICULDADE = opcoes.dificuldade;
+  const MODO = opcoes.bomba ? 'bombastico' : 'classico';
+
+  // nova dinâmica: cada nível dura DURACAO segundos e exige PERCENTUAL_META % de acertos
+  const DURACAO = B.DURACAO_NIVEL;
+  const PERCENTUAL_META = B.percentualParaPassar(DIFICULDADE);
 
   const DIAGONAL_E_ADJACENTE = false;
   const OCUPACAO_MAXIMA = 0.6;
   const PAUSA_ENTRE_NIVEIS = 2;
 
   const maxSimultaneas = Math.max(1, Math.floor(TOTAL * OCUPACAO_MAXIMA));
-  const limiteFugas = B.limiteDeFugas(TOTAL);
   const PIXEL_VAZIO = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 
   const $ = (id) => document.getElementById(id);
   const el = {
     tabuleiro: $('tabuleiro'),
-    nivel: $('hud-nivel'), tempo: $('hud-tempo'), fugas: $('hud-fugas'),
-    score: $('hud-score'), kills: $('hud-kills'), acuracia: $('hud-acuracia'),
+    nivel: $('hud-nivel'), tempo: $('hud-tempo'), meta: $('hud-meta'),
+    score: $('hud-score'), kills: $('hud-kills'), pct: $('hud-pct'),
     progresso: $('progresso-fase'),
     mensagem: $('mensagem'), msgTitulo: $('mensagem-titulo'),
-    msgTexto: $('mensagem-texto'), msgBotao: $('mensagem-botao'),
+    msgTexto: $('mensagem-texto'), msgBotao: $('mensagem-botao'), msgBotao2: $('mensagem-botao2'),
     faixa: $('faixa'), seppuku: $('btn-seppuku'),
   };
 
@@ -54,7 +58,7 @@
 
   function calcularVizinhos(b) { //mapeia os lugares para as habilidades das toupeiras funcionarem
     const lista = [];
-    for (let dl = -1; dl <= 1; dl++) { 
+    for (let dl = -1; dl <= 1; dl++) {
       for (let dc = -1; dc <= 1; dc++) {
         if (dl === 0 && dc === 0) continue;
         if (!DIAGONAL_E_ADJACENTE && dl !== 0 && dc !== 0) continue;
@@ -75,14 +79,18 @@
     partida = {
       situacao: 'espera',
       nivel: 1,
-      tempo: 0,
-      score: 0, kills: 0, killsNoNivel: 0,
-      cliques: 0, acertos: 0,
-      fugas: 0,
+      tempo: 0,                 // tempo total jogado (s)
+      tempoNivel: DURACAO,      // tempo restante do nível atual (s)
+      score: 0,                 // pontos (por tipo de toupeira)
+      kills: 0,                 // total de toupeiras acertadas (bomba desconta 1)
+      exibidasNivel: 0,         // toupeiras exibidas no nível (bombas não contam)
+      acertosNivel: 0,          // toupeiras acertadas no nível (bomba desconta 1)
+      cliques: 0, acertos: 0,   // só para a acurácia mostrada no fim
       contagemSpawn: 1,
       bloqueio: 0,
       semAparecer,
       ultimoTempoMostrado: -1,
+      salva: false,
     };
   }
 
@@ -91,6 +99,9 @@
   const quantasNoTabuleiro = () => buracos.filter((b) => b.toupeira).length;
 
   function tentarSpawn() {
+    // não surge toupeira nova se ela não teria o tempo cheio (tt) para ser acertada antes do nível acabar
+    if (partida.tempoNivel <= B.tempoDePermanencia(DIFICULDADE, partida.nivel)) return null;
+
     const livres = buracos.filter((b) => !b.toupeira);
     if (livres.length === 0 || quantasNoTabuleiro() >= maxSimultaneas) return null;
 
@@ -99,7 +110,9 @@
 
     for (const t of TIPOS) partida.semAparecer[t.id] = t.id === id ? 0 : partida.semAparecer[t.id] + 1;
 
-    return criarToupeira(POR_ID[id], aleatorio(livres));
+    const m = criarToupeira(POR_ID[id], aleatorio(livres));
+    if (id !== 'bomba') partida.exibidasNivel++;
+    return m;
   }
 
   function criarToupeira(tipo, buraco) {
@@ -170,7 +183,7 @@
   }
 
   el.tabuleiro.addEventListener('pointerdown', (e) => {
-    if (e.button !== 0 || partida.situacao !== 'jogando') return;
+    if (e.button !== 0 || partida.situacao !== 'jogando' || partida.bloqueio > 0) return;
     partida.cliques++;
 
     const sprite = e.target.closest('.toupeira');
@@ -195,13 +208,12 @@
     esconder(m.buraco, true);
     if (m.tipo.id === 'bomba') {
       partida.score -= 100;
-    }
-    else {
+      partida.kills--;          // bomba: placar de acertos -1
+      partida.acertosNivel--;   // o placar do nível pode ficar negativo
+    } else {
       partida.kills++;
-      partida.killsNoNivel++;
+      partida.acertosNivel++;
       partida.score += m.tipo.pontos;
-      if (partida.killsNoNivel >= B.metaDeKills(partida.nivel))
-        subirDeNivel();
     }
   }
 
@@ -213,66 +225,83 @@
   }
 
   function atualizar(dt) {
+    if (partida.bloqueio > 0) { //pausa curta entre níveis: relógio do nível parado
+      partida.bloqueio -= dt;
+      return;
+    }
+
     partida.tempo += dt;
+    partida.tempoNivel -= dt;
 
     for (const b of buracos) {
       const m = b.toupeira;
       if (!m) continue;
       m.restante -= dt;
-      if (m.restante <= 0) { fugir(m); if (partida.situacao !== 'jogando') return; continue; }
+      if (m.restante <= 0) { sumir(m); continue; } // a toupeira se escondeu: não há mais penalidade por fuga
       const acabando = m.restante < 1;
       if (acabando !== m.acabando) { m.acabando = acabando; b.sprite.classList.toggle('acabando', acabando); }
     }
 
-    if (partida.bloqueio > 0) {
-      partida.bloqueio -= dt;
-    } else {
-      partida.contagemSpawn -= dt;
-      if (partida.contagemSpawn <= 0) {
-        tentarSpawn();
-        partida.contagemSpawn = B.intervaloDeSpawn(DIFICULDADE, partida.nivel, TOTAL);
-      }
+    if (partida.tempoNivel <= 0) { partida.tempoNivel = 0; encerrarNivel(); return; }
+
+    partida.contagemSpawn -= dt;
+    if (partida.contagemSpawn <= 0) {
+      tentarSpawn();
+      partida.contagemSpawn = B.intervaloDeSpawn(DIFICULDADE, partida.nivel, TOTAL);
     }
 
-    if (Math.floor(partida.tempo) !== partida.ultimoTempoMostrado) atualizarHUD();
+    el.progresso.value = ((DURACAO - partida.tempoNivel) / DURACAO) * 100;
+    if (Math.ceil(partida.tempoNivel) !== partida.ultimoTempoMostrado) atualizarHUD();
   }
 
-  function fugir(m) { //sistema de penalidade da fuga da toupeira
+  function sumir(m) {
     m.buraco.toupeira = null;
     esconder(m.buraco);
-    if (m.tipo.id !== 'bomba') {
-      partida.fugas++;
-      if (partida.fugas >= limiteFugas) fimDeJogo('fugas');
-    }
-    atualizarHUD();
+  }
+
+  const percentualNivel = () =>
+    partida.exibidasNivel > 0 ? (partida.acertosNivel / partida.exibidasNivel) * 100 : 0;
+
+  function encerrarNivel() { //fim dos t segundos: passa se atingiu x% das exibidas
+    if (percentualNivel() >= PERCENTUAL_META) subirDeNivel();
+    else fimDeJogo('nivel');
   }
 
   function subirDeNivel() {
     partida.nivel++;
-    partida.killsNoNivel = 0;
-    partida.fugas = 0;
+    partida.tempoNivel = DURACAO;
+    partida.exibidasNivel = 0;
+    partida.acertosNivel = 0;
     partida.bloqueio = PAUSA_ENTRE_NIVEIS;
     partida.contagemSpawn = 0.5;
     limparTabuleiro();
     mostrarFaixa('NÍVEL ' + partida.nivel);
+    el.progresso.value = 0;
+    atualizarHUD();
   }
 
   function atualizarHUD() {
     el.nivel.textContent = partida.nivel;
-    partida.ultimoTempoMostrado = Math.floor(partida.tempo);
+    partida.ultimoTempoMostrado = Math.ceil(Math.max(0, partida.tempoNivel));
     el.tempo.textContent = partida.ultimoTempoMostrado + 's';
+    el.meta.textContent = PERCENTUAL_META + '%';
     el.score.textContent = partida.score;
     el.kills.textContent = partida.kills;
-    el.fugas.textContent = partida.fugas + '/' + limiteFugas;
-    el.acuracia.textContent = (partida.cliques ? Math.round((partida.acertos / partida.cliques) * 100) : 100) + '%';
-    el.progresso.value = Math.min(100, (partida.killsNoNivel / B.metaDeKills(partida.nivel)) * 100);
+    el.pct.textContent = Math.floor(percentualNivel()) + '% (' + partida.acertosNivel + '/' + partida.exibidasNivel + ')';
   }
 
-  function mostrarMensagem(titulo, texto, rotuloBotao, aoClicar) {
+  function mostrarMensagem(titulo, texto, rotuloBotao, aoClicar, rotuloBotao2, aoClicar2) {
     el.msgTitulo.textContent = titulo;
     el.msgTexto.textContent = texto;
     el.msgBotao.textContent = rotuloBotao;
     el.msgBotao.onclick = aoClicar;
+    if (rotuloBotao2) {
+      el.msgBotao2.textContent = rotuloBotao2;
+      el.msgBotao2.onclick = aoClicar2;
+      el.msgBotao2.hidden = false;
+    } else {
+      el.msgBotao2.hidden = true;
+    }
     el.mensagem.hidden = false;
     el.msgBotao.focus();
   }
@@ -288,6 +317,7 @@
     limparTabuleiro();
     partida.situacao = 'jogando';
     esconderMensagem();
+    el.progresso.value = 0;
     atualizarHUD();
     ultimoQuadro = performance.now();
     cancelAnimationFrame(rafId);
@@ -307,21 +337,41 @@
     esconderMensagem();
   }
 
+  // grava a partida no histórico (localStorage); só uma vez por partida
+  function salvarNoHistorico(motivo) {
+    if (partida.salva) return;
+    partida.salva = true;
+    Armazenamento.salvarPartida({
+      modo: MODO, dificuldade: DIFICULDADE, tamanho: N,
+      nivel: partida.nivel, acertos: partida.kills, pontos: partida.score,
+      tempo: Math.floor(partida.tempo), motivo,
+    });
+  }
+
   function fimDeJogo(motivo) {
     if (partida.situacao === 'fim') return;
+    const pctFinal = Math.floor(percentualNivel());
     partida.situacao = 'fim';
     cancelAnimationFrame(rafId);
     limparTabuleiro();
+    salvarNoHistorico(motivo);
 
     const acuracia = partida.cliques ? Math.round((partida.acertos / partida.cliques) * 100) : 0;
-    const resumo = 'Nível ' + partida.nivel + '  •  Score ' + partida.score +
-                   '  •  Kills ' + partida.kills + '  •  Acurácia ' + acuracia + '%';
-    mostrarMensagem(motivo === 'desistencia' ? 'SEPPUKU' : 'FIM DE JOGO', resumo, 'Jogar de novo', iniciar);
+    let resumo = 'Nível ' + partida.nivel + '  •  Acertos ' + partida.kills + '  •  Pontos ' + partida.score +
+                 '  •  Acurácia ' + acuracia + '%';
+    if (motivo === 'nivel') {
+      resumo = 'Você acertou ' + pctFinal + '% das toupeiras do nível (mínimo ' + PERCENTUAL_META + '%).  ' + resumo;
+    }
+    mostrarMensagem(
+      motivo === 'desistencia' ? 'SEPPUKU' : 'FIM DE JOGO', resumo,
+      'Jogar de novo', iniciar,
+      'Voltar às configurações', () => { window.location.href = 'configuracoes.html'; }
+    );
 
     document.dispatchEvent(new CustomEvent('jogo:fim', {
       detail: {
-        motivo, modo: 'classico', dificuldade: DIFICULDADE, tamanho: N,
-        nivel: partida.nivel, score: partida.score, kills: partida.kills,
+        motivo, modo: MODO, dificuldade: DIFICULDADE, tamanho: N,
+        nivel: partida.nivel, pontos: partida.score, acertos: partida.kills,
         acuracia, tempo: Math.floor(partida.tempo),
       },
     }));
@@ -341,6 +391,11 @@
     if (document.hidden && opcoes.pausaAuto) pausar();
   });
 
+  // sair da página no meio da partida conta como desistência e fica no histórico
+  window.addEventListener('pagehide', () => {
+    if (partida.situacao === 'jogando' || partida.situacao === 'pausado') salvarNoHistorico('desistencia');
+  });
+
   TIPOS.forEach((t) => { new Image().src = t.img; });
   construirTabuleiro();
   novaPartida();
@@ -348,7 +403,7 @@
   mostrarMensagem(
     'PRONTO?',
     N + 'x' + N + '  •  ' + { facil: 'Fácil', normal: 'Normal', dificil: 'Difícil' }[DIFICULDADE] +
-      '  •  Esc ou P pausa',
+      '  •  ' + DURACAO + 's por nível  •  Meta ' + PERCENTUAL_META + '%  •  Esc ou P pausa',
     'Começar',
     iniciar
   );

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ranking Global</title>
     <link rel="icon" type="image/x-icon" href="../img/topeira_samurai.png">
+    <script src="../js/storage.js"></script>
+    <script>Armazenamento.exigirLogin();</script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +24,7 @@
             <h2>Ranking Global</h2>
             
             <div class="tabela-container">
-                <div class="grid-ranking">
+                <div class="grid-ranking" id="grid-ranking">
                     <!-- Cabeçalho -->
                     <div class="linha-cabecalho">
                         <div class="celula">Pos</div>
@@ -30,50 +32,6 @@
                         <div class="celula">Modo</div>
                         <div class="celula">Nível</div>
                         <div class="celula">Pontos</div>
-                    </div>
-
-                    <!-- Ouro -->
-                    <div class="linha-dados top1">
-                        <div class="celula">1º</div>
-                        <div class="celula">ShadowNinja99</div>
-                        <div class="celula">Explosivo</div>
-                        <div class="celula">15</div>
-                        <div class="celula">342</div>
-                    </div>
-
-                    <!-- Prata -->
-                    <div class="linha-dados top2">
-                        <div class="celula">2º</div>
-                        <div class="celula">RoninDestroyer</div>
-                        <div class="celula">Clássico</div>
-                        <div class="celula">12</div>
-                        <div class="celula">280</div>
-                    </div>
-
-                    <!-- Bronze -->
-                    <div class="linha-dados top3">
-                        <div class="celula">3º</div>
-                        <div class="celula">KatanaMaster</div>
-                        <div class="celula">Explosivo</div>
-                        <div class="celula">10</div>
-                        <div class="celula">195</div>
-                    </div>
-
-                    <!-- Restante -->
-                    <div class="linha-dados">
-                        <div class="celula">4º</div>
-                        <div class="celula">YakuzaMole</div>
-                        <div class="celula">Clássico</div>
-                        <div class="celula">8</div>
-                        <div class="celula">150</div>
-                    </div>
-
-                    <div class="linha-dados">
-                        <div class="celula">5º</div>
-                        <div class="celula">NoobSamurai</div>
-                        <div class="celula">Explosivo</div>
-                        <div class="celula">3</div>
-                        <div class="celula">42</div>
                     </div>
                 </div>
             </div>
@@ -83,5 +41,33 @@
             </p>
         </div>
     </main>
+
+    <script>
+        (() => {
+            const grid = document.getElementById('grid-ranking');
+            const melhores = Armazenamento.ranking(10); // melhor partida de cada jogador
+
+            if (melhores.length === 0) {
+                const vazio = document.createElement('p');
+                vazio.textContent = 'Nenhuma partida registrada ainda.';
+                vazio.style.textAlign = 'center';
+                grid.appendChild(vazio);
+                return;
+            }
+
+            melhores.forEach((p, i) => {
+                const l = document.createElement('div');
+                l.className = 'linha-dados' + (i < 3 ? ' top' + (i + 1) : '');
+                const textos = [(i + 1) + 'º', p.usuario, Armazenamento.rotuloModo(p), p.nivel, p.pontos];
+                for (const t of textos) {
+                    const c = document.createElement('div');
+                    c.className = 'celula';
+                    c.textContent = t;
+                    l.appendChild(c);
+                }
+                grid.appendChild(l);
+            });
+        })();
+    </script>
 </body>
 </html>

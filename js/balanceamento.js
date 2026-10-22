@@ -100,20 +100,19 @@ const Balanceamento = (() => {
     return chances[chances.length - 1].id;
   }
 
-  //kills pra passar de fase
-  function metaDeKills(nivel) {
-    return Math.min(40, 8 + 2 * (nivel - 1));
-  }
-  //toupeiras que podem fugir antes de perder
-  function limiteDeFugas(qtdBuracos) {
-    return Math.round(5 + qtdBuracos / 3);
+  //duração de cada nível (t) em segundos
+  const DURACAO_NIVEL = 20;
+  //% das toupeiras exibidas que precisam ser acertadas para passar de nível
+  const PERCENTUAL_PARA_PASSAR = { facil: 60, normal: 70, dificil: 80 };
+  function percentualParaPassar(dificuldade) {
+    return PERCENTUAL_PARA_PASSAR[dificuldade];
   }
 
   return {
     TEMPO_MINIMO_ABSOLUTO,
     tempoDePermanencia, intervaloDeSpawn,
     calcularChances, sortearTipo,
-    metaDeKills, limiteDeFugas,
+    DURACAO_NIVEL, percentualParaPassar,
   };
 })();
 

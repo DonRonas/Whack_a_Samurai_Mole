@@ -16,20 +16,24 @@
         <main>
             <img src="../img/topeira_icone.png" alt="imagem de topeira samurai" width="350" height="250">
 
-            <form action="principal.html" method="GET">
+            <form id="form-login">
                 <div class="campo">
                     <label for="usuario">Usuario:</label>
-                    <input type="text" id="usuario" name="usuario" placeholder="digite seu nome de usuario">
+                    <input type="text" id="usuario" name="usuario" placeholder="digite seu nome de usuario" required autocomplete="username">
                 </div>
         
                 <div class="campo">
                     <label for="senha">Senha:</label>
-                    <input type="text" id="senha" name="senha" placeholder="digite sua senha">
+                    <input type="password" id="senha" name="senha" placeholder="digite sua senha" required autocomplete="current-password">
                 </div>
+                <p id="mensagem-form" role="alert" style="text-align: center; min-height: 1.2em;"></p>
                 <button type="submit" style="font-family: 'Tiny5', sans-serif, serif;">ENTRAR</button>
             </form>
             <p><a href="cadastro.html">Não tem cadastro? Cadastre-se aqui</a></p>
         </main>
+
+        <script src="../js/storage.js"></script>
+        <script src="../js/auth.js"></script>
     </body>
     
 </html>

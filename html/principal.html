@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Interface do Jogo</title>
     <link rel="icon" type="image/x-icon" href="../img/topeira_samurai.png">
+    <script src="../js/storage.js"></script>
+    <script>Armazenamento.exigirLogin();</script>
     
     <link rel="stylesheet" href="../css/principal.css">
     <link rel="stylesheet" href="../css/tabuleiro.css">
@@ -22,14 +24,14 @@
         <header class="hud-topo">
             <div class="status-box">
                 <p>Nivel: <span id="hud-nivel">1</span></p>
-                <p>Tempo: <span id="hud-tempo">0s</span></p>
-                <p>Fugas: <span id="hud-fugas">0/0</span></p>
+                <p>Tempo restante: <span id="hud-tempo">20s</span></p>
+                <p>Meta para passar: <span id="hud-meta">70%</span></p>
             </div>
            
             <div class="status-box">
                 <p>Score: <span id="hud-score">0</span></p>
-                <p>Kills: <span id="hud-kills">0</span></p>
-                <p>Acurácia: <span id="hud-acuracia">100%</span></p>
+                <p>Acertos: <span id="hud-kills">0</span></p>
+                <p>Acertos no nível: <span id="hud-pct">0%</span></p>
             </div>
         </header>
 
@@ -46,6 +48,7 @@
                         <h2 id="mensagem-titulo"></h2>
                         <p id="mensagem-texto"></p>
                         <button type="button" id="mensagem-botao" class="botao-jogo"></button>
+                        <button type="button" id="mensagem-botao2" class="botao-jogo" hidden></button>
                     </div>
                 </div>
             </main>
@@ -125,6 +128,8 @@
             btnBombastico.addEventListener('click', () => trocarModo(true));
 
             atualizarVisual(Opcoes.carregar().bomba);
+
+            document.querySelector('.sair a').addEventListener('click', () => Armazenamento.logout());
         })();
     </script>
 
