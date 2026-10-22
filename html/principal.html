@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Interface do Jogo</title>
+    <link rel="icon" type="image/x-icon" href="../img/topeira_samurai.png">
+    
+    <link rel="stylesheet" href="../css/principal.css">
+    <link rel="stylesheet" href="../css/tabuleiro.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="interface_jogo">
+
+        <div class="titulo-jogo">
+            <h1>Whack a Mole Samurai - Clássico</h1>
+        </div>
+        
+        <header class="hud-topo">
+            <div class="status-box">
+                <p>Nivel: <span id="hud-nivel">1</span></p>
+                <p>Tempo: <span id="hud-tempo">0s</span></p>
+                <p>Fugas: <span id="hud-fugas">0/0</span></p>
+            </div>
+           
+            <div class="status-box">
+                <p>Score: <span id="hud-score">0</span></p>
+                <p>Kills: <span id="hud-kills">0</span></p>
+                <p>Acurácia: <span id="hud-acuracia">100%</span></p>
+            </div>
+        </header>
+
+  
+        <div class="area-central">
+            
+
+            <main class="tabuleiro-container">
+                <div class="borda-tabuleiro">
+                    <div id="tabuleiro" class="tabuleiro" aria-label="tabuleiro do jogo"></div>
+
+                    <div id="faixa" class="faixa" aria-live="polite"></div>
+                    <div id="mensagem" class="mensagem" hidden>
+                        <h2 id="mensagem-titulo"></h2>
+                        <p id="mensagem-texto"></p>
+                        <button type="button" id="mensagem-botao" class="botao-jogo"></button>
+                    </div>
+                </div>
+            </main>
+
+
+            <aside class="menu-lateral">
+                <h2>MENU</h2>
+                <nav>
+                    <ol>
+                        <li><p class="tipo_jogo">[ Modos ]</p></li>
+                        <li><p class="opcao-sub">- Clássico</p></li>
+                        <li><p class="opcao-sub">- Bombástico</p></li>
+                    </ol>
+                        <hr class="linha">
+                    <ol>
+                        <li><a href="skins.html">Skins</a></li>
+                        <li><a href="bestiario.html">Bestiário</a></li>
+                        <li><a href="ranking.html">Ranking</a></li>
+                        <li><a href="historico.html">Histórico</a></li>
+                        <li><a href="configuracoes.html">Configurações</a></li>
+                    </ol>
+                        <hr class="linha">
+                    <ol>
+                        <li><a href="creditos.html">Créditos</a></li>
+                        <li><a href="alteracao_cadastro.html">Alterar Cadastro</a></li>
+                        <li class="sair"><a href="inicial.html">Sair</a></li>
+                    </ol>
+                </nav>
+            </aside>
+        </div>
+
+
+        <footer class="hud-rodape">
+            <label for="progresso-fase">Progresso da Fase</label>
+            <progress id="progresso-fase" value="0" max="100"></progress>
+        </footer>
+
+        <div class="desistir-fase" id="btn-seppuku">
+                <p>SEPPUKU</p>
+        </div>
+
+    </div>
+
+    <script src="../js/opcoes.js"></script>
+    <script src="../js/toupeiras.js"></script>
+    <script src="../js/balanceamento.js"></script>
+    <script src="../js/jogo.js"></script>
+</body>
+</html>

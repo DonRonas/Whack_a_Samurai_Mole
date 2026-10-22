@@ -1,0 +1,170 @@
+.borda-tabuleiro {
+  position: relative;
+}
+
+.tabuleiro {
+  --n: 3;
+  display: grid;
+  grid-template-columns: repeat(var(--n), 1fr);
+  grid-template-rows: repeat(var(--n), 1fr);
+  width: min(62vh, 640px);
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 5px;
+  background: #7a4a1e url("../img/terra.png") repeat;
+  background-size: 420px auto;
+  image-rendering: pixelated;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+.celula {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+}
+
+.buraco {
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  bottom: 9%;
+  height: 32%;
+  border-radius: 50%;
+  background: #140700;
+  border: clamp(2px, 0.45vw, 5px) solid #e08a2e;
+  box-shadow: inset 0 0.35em 0 rgba(0, 0, 0, 0.55);
+}
+
+.corte {
+  position: absolute;
+  inset: 0 0 25% 0;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.toupeira {
+  width: 74%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  image-rendering: pixelated;
+  transform: translateY(110%);
+  transition: transform 0.12s ease-out;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.toupeira.up {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.toupeira.ferida {
+  filter: drop-shadow(0 0 3px #ff2a2a) saturate(1.3);
+}
+.toupeira.bateu {
+  animation: bateu 0.18s linear;
+}
+@keyframes bateu {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6%); }
+  75% { transform: translateX(6%); }
+}
+
+.toupeira.acabando {
+  animation: piscar 0.25s steps(2) infinite;
+}
+@keyframes piscar {
+  50% { opacity: 0.45; }
+}
+
+.toupeira.morta {
+  transform: translateY(110%) scaleY(0.6);
+  filter: brightness(2.2) sepia(1) hue-rotate(-40deg);
+  transition: transform 0.22s ease-in, filter 0.22s;
+  pointer-events: none;
+}
+
+.mensagem {
+  position: absolute;
+  inset: 5px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.78);
+  border-radius: 5px;
+}
+.mensagem[hidden] { display: none; }
+
+.mensagem h2 {
+  font-size: 3rem;
+  color: #cf0707;
+  text-shadow: 2px 2px 0 #fff;
+  letter-spacing: 4px;
+}
+.mensagem p {
+  font-size: 1.3rem;
+  color: #FFD700;
+}
+
+.botao-jogo {
+  background: transparent;
+  color: #fff;
+  font-size: 1.4rem;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.botao-jogo:hover,
+.botao-jogo:focus-visible {
+  background: #fff;
+  color: #cf0707;
+  outline: none;
+}
+
+.faixa {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 42%;
+  z-index: 9;
+  text-align: center;
+  font-size: 3.5rem;
+  color: #FFD700;
+  text-shadow: 3px 3px 0 #000;
+  letter-spacing: 6px;
+  pointer-events: none;
+  opacity: 0;
+}
+.faixa.mostrar {
+  animation: faixa 1.8s ease-out;
+}
+@keyframes faixa {
+  0%   { opacity: 0; transform: scale(0.6); }
+  15%  { opacity: 1; transform: scale(1.1); }
+  25%  { transform: scale(1); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.desistir-fase {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.desistir-fase:hover,
+.desistir-fase:focus-visible {
+  background: #fff;
+  color: #cf0707;
+  outline: none;
+}
