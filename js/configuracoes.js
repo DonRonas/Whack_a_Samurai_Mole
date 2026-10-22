@@ -13,7 +13,7 @@
     avisoTimer = setTimeout(() => aviso.classList.remove('visivel'), 1500);
   }
 
-  function desenharPrevia() {
+  function desenharPrevia() { //mini tabuleiro no configuracoes
     const n = opcoes.tamanho;
     const previa = $('previaTabuleiro');
     previa.style.gridTemplateColumns = 'repeat(' + n + ', 1fr)';
@@ -23,7 +23,7 @@
     $('previaTexto').textContent = n + 'x' + n + ' — ' + n * n + ' buracos';
   }
 
-  function aplicarNaTela() {
+  function aplicarNaTela() { //igualar o que esta marcado com a aparencia no menu
     document.querySelectorAll('input[name="tamanho"]').forEach((r) => (r.checked = Number(r.value) === opcoes.tamanho));
     document.querySelectorAll('input[name="dificuldade"]').forEach((r) => (r.checked = r.value === opcoes.dificuldade));
 
@@ -40,7 +40,7 @@
     desenharPrevia();
   }
 
-  function mudou(parcial) {
+  function mudou(parcial) { //manda pro opcoes para guardar etc
     opcoes = Opcoes.sanitizar({ ...opcoes, ...parcial });
     Opcoes.salvar(opcoes);
     aplicarNaTela();

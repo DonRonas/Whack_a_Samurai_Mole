@@ -9,7 +9,7 @@ const Balanceamento = (() => {
   const REDUCAO_TEMPO_POR_NIVEL = 0.1;
   const TEMPO_MINIMO_ABSOLUTO = 0.5;
 
-  function tempoDePermanencia(dificuldade, nivel) {
+  function tempoDePermanencia(dificuldade, nivel) { //altera o tempo de permanencia de cada toupeira por nível de dificuldade
     const c = TEMPO_PERMANENCIA[dificuldade];
     const t = c.inicial - REDUCAO_TEMPO_POR_NIVEL * (nivel - 1);
     return arredondar(Math.max(c.minimo, t));
@@ -59,7 +59,7 @@ const Balanceamento = (() => {
 
   const ORDEM_SORTEIO = ['arqueira', 'ninja', 'demonio', 'monge', 'samurai'];
 
-  const AZAR = {
+  const AZAR = { //sistema de pity do jogo
     aposSpawns: 8,
     bonusPorSpawn: 2,
     bonusMaximo: 20,
@@ -67,7 +67,7 @@ const Balanceamento = (() => {
 
   const BONUS_MONGE_POR_DEMONIO = 0.15;
 
-  function calcularChances(dificuldade, nivel, semAparecer = {}, demonios = 0) {
+  function calcularChances(dificuldade, nivel, semAparecer = {}, demonios = 0, usarBomba = false) {
     const tabela = CHANCES[dificuldade];
     const lista = ORDEM_SORTEIO.map((id) => {
       let chance = Math.min(CHANCE_MAXIMA[id], tabela[id].base + tabela[id].porNivel * (nivel - 1));
@@ -79,10 +79,13 @@ const Balanceamento = (() => {
       return { id, chance };
     });
 
-    const limite = 100 - CAMPONESA_MINIMA;
+    let limite = 100 - CAMPONESA_MINIMA;
+    if (usarBomba) limite -= 10; 
+
     const soma = lista.reduce((s, x) => s + x.chance, 0);
     if (soma > limite) lista.forEach((x) => (x.chance = (x.chance * limite) / soma));
 
+    if (usarBomba) lista.push({ id: 'bomba', chance: 10 });
     lista.push({ id: 'camponesa', chance: 100 - lista.reduce((s, x) => s + x.chance, 0) });
     return lista;
   }

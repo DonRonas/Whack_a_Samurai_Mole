@@ -30,8 +30,8 @@
 
   const buracos = [];
 
-  function construirTabuleiro() {
-    el.tabuleiro.style.setProperty('--n', N);
+  function construirTabuleiro() { //faz o tabuleiro de qualquer tamanho com uma textura simples
+    el.tabuleiro.style.setProperty('--n', N); //pra arte so tem que fazer algumas texturas diferentes
     el.tabuleiro.textContent = '';
     buracos.length = 0;
 
@@ -52,9 +52,9 @@
     for (const b of buracos) b.vizinhos = calcularVizinhos(b);
   }
 
-  function calcularVizinhos(b) {
+  function calcularVizinhos(b) { //mapeia os lugares para as habilidades das toupeiras funcionarem
     const lista = [];
-    for (let dl = -1; dl <= 1; dl++) {
+    for (let dl = -1; dl <= 1; dl++) { 
       for (let dc = -1; dc <= 1; dc++) {
         if (dl === 0 && dc === 0) continue;
         if (!DIAGONAL_E_ADJACENTE && dl !== 0 && dc !== 0) continue;
@@ -94,7 +94,7 @@
     const livres = buracos.filter((b) => !b.toupeira);
     if (livres.length === 0 || quantasNoTabuleiro() >= maxSimultaneas) return null;
 
-    const chances = B.calcularChances(DIFICULDADE, partida.nivel, partida.semAparecer, contarTipo('demonio'));
+    const chances = B.calcularChances(DIFICULDADE, partida.nivel, partida.semAparecer, contarTipo('demonio'), opcoes.bomba);
     const id = B.sortearTipo(chances, Math.random() * 100);
 
     for (const t of TIPOS) partida.semAparecer[t.id] = t.id === id ? 0 : partida.semAparecer[t.id] + 1;
@@ -190,13 +190,19 @@
     atualizarHUD();
   });
 
-  function matar(m) {
+  function matar(m) { //sistema de pontos e bomba ao clicar
     m.buraco.toupeira = null;
     esconder(m.buraco, true);
-    partida.kills++;
-    partida.killsNoNivel++;
-    partida.score += m.tipo.pontos;
-    if (partida.killsNoNivel >= B.metaDeKills(partida.nivel)) subirDeNivel();
+    if (m.tipo.id === 'bomba') {
+      partida.score -= 100;
+    }
+    else {
+      partida.kills++;
+      partida.killsNoNivel++;
+      partida.score += m.tipo.pontos;
+      if (partida.killsNoNivel >= B.metaDeKills(partida.nivel))
+        subirDeNivel();
+    }
   }
 
   function quadro(agora) {
@@ -218,7 +224,6 @@
       if (acabando !== m.acabando) { m.acabando = acabando; b.sprite.classList.toggle('acabando', acabando); }
     }
 
-    // 2) Hora de aparecer outra?
     if (partida.bloqueio > 0) {
       partida.bloqueio -= dt;
     } else {
@@ -232,12 +237,14 @@
     if (Math.floor(partida.tempo) !== partida.ultimoTempoMostrado) atualizarHUD();
   }
 
-  function fugir(m) {
+  function fugir(m) { //sistema de penalidade da fuga da toupeira
     m.buraco.toupeira = null;
     esconder(m.buraco);
-    partida.fugas++;
+    if (m.tipo.id !== 'bomba') {
+      partida.fugas++;
+      if (partida.fugas >= limiteFugas) fimDeJogo('fugas');
+    }
     atualizarHUD();
-    if (partida.fugas >= limiteFugas) fimDeJogo('fugas');
   }
 
   function subirDeNivel() {

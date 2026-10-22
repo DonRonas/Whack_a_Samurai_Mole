@@ -2,6 +2,7 @@
 
 * {
   box-sizing: border-box;
+  cursor: url('../img/pilarDragao.png') 16 16, auto !important;
 }
 
 html, body {
