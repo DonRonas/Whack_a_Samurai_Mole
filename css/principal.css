@@ -79,13 +79,16 @@ body {
   margin-top: 15px;
   margin-bottom: 15px;
   height: 70vh;
+  min-height: 0;
+  position: relative; 
 }
 
 .tabuleiro-container {
-  flex: 3;
+  flex: 1; 
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 56px; 
 }
 
 .borda-tabuleiro {
@@ -95,25 +98,84 @@ body {
   padding: 5px;
   background-color: #000;
   max-height: 100%;
+  max-width: 100%; 
   box-shadow: 0 0 20px rgba(207, 7, 7, 0.5);
+  display: flex; 
 }
 
 .borda-tabuleiro img {
   max-height: 65vh; 
-  width: 600px;
+  width: 100%;
+  max-width: 600px; 
+  object-fit: cover; 
   border-radius: 5px;
 }
 
 .menu-lateral {
-  flex: 1;
   background-color: rgba(207, 7, 7, 0.85); 
   border: 3px solid #fff;
-  border-radius: 15px;
   padding: 20px;
   display: flex;
   flex-direction: column;
   box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
   overflow-y: auto;
+  position: absolute;
+  top: 0;
+  right: -20px;
+  bottom: 0;
+  width: min(320px, 30vw);
+  z-index: 10;
+  transform: translateX(calc(100% - 40px));
+  transition: transform 0.25s ease;
+  border-right: none;
+  border-radius: 15px 0 0 15px;
+}
+
+.menu-lateral:hover,
+.menu-lateral:focus-within {
+  transform: translateX(0);
+}
+
+.menu-lateral > * {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.menu-lateral:hover > *,
+.menu-lateral:focus-within > * {
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+
+.menu-lateral::before {
+  content: "MENU";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  font-size: 1.4rem;
+  letter-spacing: 4px;
+  text-shadow: 2px 2px 0 #000;
+  pointer-events: none;
+  transition: opacity 0.1s ease;
+}
+
+.menu-lateral:hover::before,
+.menu-lateral:focus-within::before {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-lateral,
+  .menu-lateral > *,
+  .menu-lateral::before {
+    transition: none;
+  }
 }
 
 .menu-lateral::-webkit-scrollbar {
