@@ -37,3 +37,14 @@ CREATE TABLE IF NOT EXISTS partidas (
     KEY idx_partidas_ranking (usuario_id, nivel, pontos),
     CONSTRAINT fk_partidas_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS usuario_skins (
+    usuario_id  INT UNSIGNED NOT NULL,
+    skin_id     VARCHAR(40)  NOT NULL,
+    tipo        VARCHAR(20)  NOT NULL,
+    equipada    TINYINT(1)   NOT NULL DEFAULT 0,
+    comprada_em DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (usuario_id, skin_id),
+    KEY idx_skins_equipadas (usuario_id, tipo, equipada),
+    CONSTRAINT fk_skins_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
