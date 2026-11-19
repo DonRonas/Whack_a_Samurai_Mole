@@ -1,3 +1,8 @@
+<?php
+    require __DIR__ . '/../php/sessao.php';
+    redirecionar_se_logado();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -29,7 +34,7 @@
                 <p id="mensagem-form" role="alert" style="text-align: center; min-height: 1.2em;"></p>
                 <button type="submit" style="font-family: 'Tiny5', sans-serif, serif;">ENTRAR</button>
             </form>
-            <p><a href="cadastro.html">Não tem cadastro? Cadastre-se aqui</a></p>
+            <p><a href="cadastro.php">Não tem cadastro? Cadastre-se aqui</a></p>
         </main>
 
         <script src="../js/storage.js"></script>

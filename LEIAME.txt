@@ -1,0 +1,21 @@
+WHACK A SAMURAI MOLE - INSTRUCOES DE INSTALACAO
+
+Requisitos: PHP 8 ou superior e MySQL ou MariaDB (ex.: XAMPP). Sem frameworks.
+
+1) Coloque a pasta do projeto em htdocs (XAMPP) e ligue Apache e MySQL.
+
+2) Confira os dados de conexao em php/config.php
+   (padrao: host localhost, banco whack_samurai, usuario root, senha vazia).
+
+3) Crie o banco e as tabelas (escolha UMA das formas):
+   a) Pelo navegador: abra http://localhost/Whack_a_Samurai_Mole/banco/criar_tabelas.php
+   b) Pelo terminal: php banco/criar_tabelas.php
+   c) Pelo phpMyAdmin: aba Importar, arquivo banco/criar_tabelas.sql
+   O script cria o banco whack_samurai e as tabelas usuarios e partidas.
+   Pode ser executado mais de uma vez sem perder dados.
+
+4) Abra http://localhost/Whack_a_Samurai_Mole/html/inicial.php
+   Cadastre um jogador e entre.
+
+Controle de acesso: todas as paginas, exceto inicial.php (login) e cadastro.php,
+exigem sessao PHP ativa; sem login o usuario e redirecionado para inicial.php.

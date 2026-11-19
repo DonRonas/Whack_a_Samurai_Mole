@@ -1,3 +1,8 @@
+<?php
+    require __DIR__ . '/../php/sessao.php';
+    exigir_login_pagina();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,9 +10,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alterar Cadastro</title>
   <link rel="icon" type="image/x-icon" href="../img/topeira_samurai.png">
-  <script src="../js/storage.js"></script>
-  <script>Armazenamento.exigirLogin();</script>
- 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
@@ -51,11 +53,11 @@
                 <button type="submit">Realizar Alteração</button>
             </form>
             <p style="text-align: center; margin-top: 20px;">
-                <a href="principal.html" style="color: white; font-weight: bold;">Voltar para principal</a>
+                <a href="principal.php" style="color: white; font-weight: bold;">Voltar para principal</a>
             </p>
         </div>
     </main>
-
+    <script src="../js/storage.js"></script>
     <script src="../js/auth.js"></script>
 </body>
 </html>

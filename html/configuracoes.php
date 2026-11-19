@@ -1,3 +1,8 @@
+<?php
+    require __DIR__ . '/../php/sessao.php';
+    $usuario = exigir_login_pagina();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -150,12 +155,13 @@
 
             <p class="acoes">
                 <button type="button" id="restaurar" class="link-voltar">Restaurar padrão</button>
-                <a href="principal.html" class="link-voltar">Aplicar e Voltar</a>
+                <a href="principal.php" class="link-voltar">Aplicar e Voltar</a>
             </p>
         </div>
     </main>
 
+    <script>window.WAMS_USUARIO = <?= json_encode($usuario['username']) ?>;</script>
     <script src="../js/opcoes.js"></script>
     <script src="../js/configuracoes.js"></script>
 </body>
-</html>
+</html> 

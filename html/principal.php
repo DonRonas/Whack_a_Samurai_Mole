@@ -1,12 +1,14 @@
+<?php
+    require __DIR__ . '/../php/sessao.php';
+    $usuario = exigir_login_pagina();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Interface do Jogo</title>
-    <link rel="icon" type="image/x-icon" href="../img/topeira_samurai.png">
-    <script src="../js/storage.js"></script>
-    <script>Armazenamento.exigirLogin();</script>
-    
+    <link rel="icon" type="image/x-icon" href="../img/topeira_samurai.png">   
     <link rel="stylesheet" href="../css/principal.css">
     <link rel="stylesheet" href="../css/tabuleiro.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,17 +66,17 @@
                     </ol>
                         <hr class="linha">
                     <ol>
-                        <li><a href="skins.html">Skins</a></li>
-                        <li><a href="bestiario.html">Bestiário</a></li>
-                        <li><a href="ranking.html">Ranking</a></li>
-                        <li><a href="historico.html">Histórico</a></li>
-                        <li><a href="configuracoes.html">Configurações</a></li>
+                        <li><a href="skins.php">Skins</a></li>
+                        <li><a href="bestiario.php">Bestiário</a></li>
+                        <li><a href="ranking.php">Ranking</a></li>
+                        <li><a href="historico.php">Histórico</a></li>
+                        <li><a href="configuracoes.php">Configurações</a></li>
                     </ol>
                         <hr class="linha">
                     <ol>
-                        <li><a href="creditos.html">Créditos</a></li>
-                        <li><a href="alteracao_cadastro.html">Alterar Cadastro</a></li>
-                        <li class="sair"><a href="inicial.html">Sair</a></li>
+                        <li><a href="creditos.php">Créditos</a></li>
+                        <li><a href="alteracao_cadastro.php">Alterar Cadastro</a></li>
+                        <li class="sair"><a href="inicial.php">Sair</a></li>
                     </ol>
                 </nav>
             </aside>
@@ -92,6 +94,8 @@
 
     </div>
 
+    <script src="../js/storage.js"></script>
+    <script>window.WAMS_USUARIO = <?= json_encode($usuario['username']) ?>;</script>
     <script src="../js/opcoes.js"></script>
     <script src="../js/toupeiras.js"></script>
     <script src="../js/balanceamento.js"></script>
@@ -129,7 +133,10 @@
 
             atualizarVisual(Opcoes.carregar().bomba);
 
-            document.querySelector('.sair a').addEventListener('click', () => Armazenamento.logout());
+            document.querySelector('.sair a').addEventListener('click', (e) => {
+                e.preventDefault();
+                Armazenamento.logout();
+            });
         })();
     </script>
 

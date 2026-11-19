@@ -1,13 +1,15 @@
+<?php
+    require __DIR__ . '/../php/sessao.php';
+    exigir_login_pagina();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ranking Global</title>
-    <link rel="icon" type="image/x-icon" href="../img/topeira_samurai.png">
-    <script src="../js/storage.js"></script>
-    <script>Armazenamento.exigirLogin();</script>
-    
+    <link rel="icon" type="image/x-icon" href="../img/topeira_samurai.png">  
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
@@ -37,15 +39,18 @@
             </div>
 
             <p class="acoes">
-                <a href="principal.html" class="link-voltar">Voltar para o Menu</a>
+                <a href="principal.php" class="link-voltar">Voltar para o Menu</a>
             </p>
         </div>
     </main>
 
+    <script src="../js/storage.js"></script>
+
     <script>
-        (() => {
+        (async () => {
             const grid = document.getElementById('grid-ranking');
-            const melhores = Armazenamento.ranking(10); // melhor partida de cada jogador
+            const r = await Armazenamento.ranking();
+            const melhores = r.ok ? r.ranking : []; 
 
             if (melhores.length === 0) {
                 const vazio = document.createElement('p');

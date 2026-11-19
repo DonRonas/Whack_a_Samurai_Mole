@@ -365,7 +365,7 @@
     mostrarMensagem(
       motivo === 'desistencia' ? 'SEPPUKU' : 'FIM DE JOGO', resumo,
       'Jogar de novo', iniciar,
-      'Voltar às configurações', () => { window.location.href = 'configuracoes.html'; }
+      'Voltar às configurações', () => { window.location.href = 'configuracoes.php'; }
     );
 
     document.dispatchEvent(new CustomEvent('jogo:fim', {

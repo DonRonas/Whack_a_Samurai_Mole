@@ -1,3 +1,8 @@
+<?php
+    require __DIR__ . '/../php/sessao.php';
+    exigir_login_pagina();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -174,7 +179,7 @@
                 <hr class="linha">
 
             <p class="acoes">
-                <a href="principal.html" class="link-voltar">Voltar ao Jogo</a>
+                <a href="principal.php" class="link-voltar">Voltar ao Jogo</a>
             </p>
         </section>
 

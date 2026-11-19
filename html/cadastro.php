@@ -1,3 +1,8 @@
+<?php
+    require __DIR__ . '/../php/sessao.php';
+    redirecionar_se_logado();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -49,7 +54,7 @@
                 <button type="submit">Realizar Cadastro</button>
             </form>
             <p style="text-align: center; margin-top: 20px;">
-                <a href="inicial.html" style="color: white; font-weight: bold;">Voltar para o Login</a>
+                <a href="inicial.php" style="color: white; font-weight: bold;">Voltar para o Login</a>
             </p>
         </div>
     </main>
