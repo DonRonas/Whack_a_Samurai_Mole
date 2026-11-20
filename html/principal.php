@@ -44,11 +44,11 @@
 
             <main class="tabuleiro-container">
                 <div class="borda-tabuleiro">
-                    <div id="tabuleiro" class="tabuleiro" aria-label="tabuleiro do jogo"></div>
+                    <div id="tabuleiro" class="tabuleiro"></div>
 
                     <div id="faixa" class="faixa" aria-live="polite"></div>
                     <div id="mensagem" class="mensagem" hidden>
-                        <h2 id="mensagem-titulo"></h2>
+                        <h2 id="mensagem-titulo">Whack a Mole Samurai</h2>
                         <p id="mensagem-texto"></p>
                         <button type="button" id="mensagem-botao" class="botao-jogo"></button>
                         <button type="button" id="mensagem-botao2" class="botao-jogo" hidden></button>
