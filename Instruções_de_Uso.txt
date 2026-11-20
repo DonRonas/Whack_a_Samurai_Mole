@@ -11,8 +11,7 @@ Requisitos: PHP 8 ou superior e MySQL ou MariaDB (ex.: XAMPP). Sem frameworks.
    a) Pelo navegador: abra http://localhost/Whack_a_Samurai_Mole/banco/criar_tabelas.php
    b) Pelo terminal: php banco/criar_tabelas.php
    c) Pelo phpMyAdmin: aba Importar, arquivo banco/criar_tabelas.sql
-   O script cria o banco whack_samurai e as tabelas usuarios e partidas.
-   Pode ser executado mais de uma vez sem perder dados.
+      O script cria o banco whack_samurai e as tabelas usuarios, partidas e usuario_skins.
 
 4) Abra http://localhost/Whack_a_Samurai_Mole/html/inicial.php
    Cadastre um jogador e entre.
