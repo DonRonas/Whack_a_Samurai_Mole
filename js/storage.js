@@ -28,6 +28,7 @@ const Armazenamento = (() => {
   const salvarPartida = (partida) => chamar('../api/partida_salvar.php', partida);
   const historico = () => chamar('../api/historico.php');
   const ranking = () => chamar('../api/ranking.php');
+  const skinAcao = (skin, acao) => chamar('../api/skin_acao.php', { skin, acao });
 
   async function logout() {
     await chamar('../api/logout.php', {});
@@ -40,7 +41,7 @@ const Armazenamento = (() => {
 
   return {
     login, cadastrar, usuario, atualizarUsuario, logout,
-    salvarPartida, historico, ranking,
+    salvarPartida, historico, ranking, skinAcao,
     rotuloModo, formatarData,
   };
 })();

@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/configuracoes.css">
+<?= skins_estilo() ?>
 </head>
 <body class="carregando">
     <header>
