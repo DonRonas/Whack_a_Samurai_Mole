@@ -1,6 +1,8 @@
 <?php
     require __DIR__ . '/../php/sessao.php';
-    exigir_login_pagina();
+    $usuario = exigir_login_pagina();
+    $pontos  = skins_pontos((int) $usuario['id']);
+    $skins   = skins_do_usuario((int) $usuario['id']);
 ?>
 
 <!DOCTYPE html>
@@ -16,172 +18,59 @@
         <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
         
         <link rel="stylesheet" href="../css/skins.css">
+<?= skins_estilo() ?>
     </head>
     <body class="body">
         
         <section class="listaskin">
             <h1>Skins</h1>
+            <p class="pontos">Seus pontos: <?= $pontos ?></p>
+            <p id="mensagem-skins" role="alert" class="aviso-skins"></p>
+
+            <?php foreach (SKIN_TIPOS as $tipo => $titulo): ?>
             <ul>
                 <li>
-                <h2>Martelos:</h2>
+                <h2><?= htmlspecialchars($titulo) ?>:</h2>
                 <div class="lista">
+                    <?php foreach ($skins as $s): if ($s['tipo'] !== $tipo) continue; ?>
                     <div class="item">
-                        <img class="skins" src="../img/martelo_imperador_dragao.png" alt="skin">
-                        <p class="nome">Pilar do Imperador Dragão</p>
-                        <p>Roubado pelo próprio Sun Toupeikong, essa arma formidável esmaga qualquer inimigo.</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
+                        <div class="skins" style="<?= htmlspecialchars($s['previa']) ?>"></div>
+                        <p class="nome"><?= htmlspecialchars($s['nome']) ?></p>
+                        <p><?= htmlspecialchars($s['descricao']) ?></p>
+                        <?php if (!$s['comprada']): ?>
+                            <button class="comprar" data-skin="<?= htmlspecialchars($s['id']) ?>" data-acao="comprar"
+                                <?= $pontos < $s['custo'] ? 'disabled title="Pontos insuficientes"' : '' ?>>Comprar: <?= $s['custo'] ?> pontos</button>
+                        <?php elseif ($s['equipada']): ?>
+                            <button class="equipar" data-skin="<?= htmlspecialchars($s['id']) ?>" data-acao="desequipar">Equipada (desequipar)</button>
+                        <?php else: ?>
+                            <button class="equipar" data-skin="<?= htmlspecialchars($s['id']) ?>" data-acao="equipar">Equipar</button>
+                        <?php endif; ?>
                     </div>
-                    <div class="item">
-                        <img class="skins" src="../img/marteloskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                    <div class="item">
-                        <img class="skins" src="../img/marteloskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                    <div class="item">
-                        <img class="skins" src="../img/marteloskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                    <div class="item">
-                        <img class="skins" src="../img/marteloskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                    <div class="item">
-                        <img class="skins" src="../img/marteloskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                        
+                    <?php endforeach; ?>
                 </div>
                 </li>
             </ul>
 
                 <hr class="linha">
 
-            <ul>
-                <li>
-                <h2>Tabuleiros:</h2>
-                <div class="lista">
-                    <div class="item">
-                        <img class="skins" src="../img/tabuleiroskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                    <div class="item">
-                        <img class="skins" src="../img/tabuleiroskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                    <div class="item">
-                        <img class="skins" src="../img/tabuleiroskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                    <div class="item">
-                        <img class="skins" src="../img/tabuleiroskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                    <div class="item">
-                        <img class="skins" src="../img/tabuleiroskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                    <div class="item">
-                        <img class="skins" src="../img/tabuleiroskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                </div>
-                </li>
-            </ul>
-
-                <hr class="linha">
-
-            <ul>
-                <li>
-                <h2>Backgrounds:</h2>
-                <div class="lista">
-                    <div class="item">
-                        <img class="skins" src="../img/backgroundskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                    <div class="item">
-                        <img class="skins" src="../img/backgroundskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                    <div class="item">
-                        <img class="skins" src="../img/backgroundskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                    <div class="item">
-                        <img class="skins" src="../img/backgroundskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                    <div class="item">
-                        <img class="skins" src="../img/backgroundskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>
-                    <div class="item">
-                        <img class="skins" src="../img/backgroundskin.png" alt="skin">
-                        <p class="nome">xxxx</p>
-                        <p>xxxx</p>
-                        <button class="comprar">Comprar: xxxx pontos</button>
-                        <button class="equipar">Equipar</button>
-                    </div>  
-                </div>
-                </li>
-            </ul>
-
-                <hr class="linha">
+            <?php endforeach; ?>
 
             <p class="acoes">
                 <a href="principal.php" class="link-voltar">Voltar ao Jogo</a>
             </p>
         </section>
 
+        <script src="../js/storage.js"></script>
+        <script>
+            document.querySelectorAll('button[data-acao]').forEach((b) => {
+                b.addEventListener('click', async () => {
+                    b.disabled = true;
+                    const r = await Armazenamento.skinAcao(b.dataset.skin, b.dataset.acao);
+                    if (r.ok) { window.location.reload(); return; }
+                    document.getElementById('mensagem-skins').textContent = r.erro;
+                    b.disabled = false;
+                });
+            });
+        </script>
     </body>
 </html>

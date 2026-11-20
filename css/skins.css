@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
   font-family: 'Tiny5', sans-serif, serif;
-  cursor: url('../img/pilarDragao.png') 16 16, auto !important;
 }
 
 a {
@@ -142,4 +141,20 @@ h1 {
 .link-voltar:hover {
     background-color: #ffffff;
     color: #d70909;
+}
+
+.pontos {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.aviso-skins {
+  color: #ffd2d2;
+  min-height: 1.2em;
+  margin-bottom: 8px;
+}
+
+button:disabled {
+  opacity: 0.5;
 }

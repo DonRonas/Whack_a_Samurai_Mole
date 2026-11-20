@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 
 require_once __DIR__ . '/banco.php';
+require_once __DIR__ . '/skins.php';
 
 const SESSAO_NOME   = 'WAMSSESSID';
 const PAGINA_LOGIN  = 'inicial.php';

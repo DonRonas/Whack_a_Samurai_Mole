@@ -12,6 +12,7 @@
 <link rel="icon" type="image/x-icon" href="../img/topeira_samurai.png">
 
 <link rel="stylesheet" href="../css/creditos.css">
+<?= skins_estilo() ?>
 </head>
 <body>
   <p class="acoes">
