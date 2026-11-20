@@ -17,7 +17,7 @@
 
     <link rel="stylesheet" href="../css/configuracoes.css">
 </head>
-<body class="carregando">
+<body class="carregando" data-usuario="<?= htmlspecialchars($usuario['username'], ENT_QUOTES, 'UTF-8') ?>">
     <header>
         <h1>Whack a Mole Samurai</h1>
     </header>
@@ -160,8 +160,9 @@
         </div>
     </main>
 
-    <script>window.WAMS_USUARIO = <?= json_encode($usuario['username']) ?>;</script>
+    
     <script src="../js/opcoes.js"></script>
     <script src="../js/configuracoes.js"></script>
+    
 </body>
 </html> 

@@ -1,5 +1,5 @@
 const Opcoes = (() => {
-  const CHAVE = 'wams.opcoes.' + (window.WAMS_USUARIO || 'anonimo');
+  const CHAVE = 'wams.opcoes.' + ((document.body && document.body.dataset.usuario) || 'anonimo');
   const DIFICULDADES = ['facil', 'normal', 'dificil'];
 
   const PADRAO = Object.freeze({

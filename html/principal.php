@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-usuario="<?= htmlspecialchars($usuario['username'], ENT_QUOTES, 'UTF-8') ?>">
 
     <div class="interface_jogo">
 
@@ -95,50 +95,12 @@
     </div>
 
     <script src="../js/storage.js"></script>
-    <script>window.WAMS_USUARIO = <?= json_encode($usuario['username']) ?>;</script>
     <script src="../js/opcoes.js"></script>
     <script src="../js/toupeiras.js"></script>
     <script src="../js/balanceamento.js"></script>
     <script src="../js/jogo.js"></script>
+    <script src="../js/principal.js"></script>
 
-    <script>
-        (() => {
-            const btnClassico = document.getElementById('classico');
-            const btnBombastico = document.getElementById('bombastico');
-            const tituloJogo = document.querySelector('.titulo-jogo h1');
-
-            function atualizarVisual(usarBomba) {
-                tituloJogo.textContent = usarBomba ? 'Whack a Mole Samurai - Bombástico' : 'Whack a Mole Samurai - Clássico';
-                
-                btnClassico.style.fontWeight = usarBomba ? 'normal' : 'bold';
-                btnBombastico.style.fontWeight = usarBomba ? 'bold' : 'normal';
-                
-                btnClassico.textContent = usarBomba ? 'Clássico' : '> Clássico <';
-                btnBombastico.textContent = usarBomba ? '> Bombástico <' : 'Bombástico';
-            }
-
-            function trocarModo(usarBomba) {
-                let opcoes = Opcoes.carregar();
-                
-                if (opcoes.bomba === usarBomba) return; 
-
-                opcoes.bomba = usarBomba;
-                Opcoes.salvar(opcoes);
-
-                window.location.reload();
-            }
-
-            btnClassico.addEventListener('click', () => trocarModo(false));
-            btnBombastico.addEventListener('click', () => trocarModo(true));
-
-            atualizarVisual(Opcoes.carregar().bomba);
-
-            document.querySelector('.sair a').addEventListener('click', (e) => {
-                e.preventDefault();
-                Armazenamento.logout();
-            });
-        })();
-    </script>
 
 </body>
 </html>
